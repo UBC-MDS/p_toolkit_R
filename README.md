@@ -59,9 +59,15 @@
 
 ### Similar Packages and Functions
 
-[`fdrtool`](https://www.rdocumentation.org/packages/fdrtool/versions/1.2.15)
+R:
 
-[`stats::p.adjust`](https://www.rdocumentation.org/packages/stats/versions/3.4.3)
+* [`fdrtool`](https://www.rdocumentation.org/packages/fdrtool/versions/1.2.15)
+
+* [`stats::p.adjust`](https://www.rdocumentation.org/packages/stats/versions/3.4.3)
+
+Python:
+
+* [`statsmodels.stats.multitest`](http://www.statsmodels.org/dev/_modules/statsmodels/stats/multitest.html)
 
 ## License
 
