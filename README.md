@@ -39,7 +39,7 @@
 | `p_qq`       | qq plot labeling per method the significant pvals   |                                  |                                                       |
 | *`p_matrix`  | Confusion matrix with FDR (reverse of type I error) |                                  |                                                       |
 | *`p_summary` | Summary listing  FDR rate                           |                                  |                                                       |
-
+* Bonus functions for data with labels
 
 ## How To Use
 
@@ -65,3 +65,12 @@
 ## License
 
 [MIT License](https://github.com/UBC-MDS/p_toolkit_R/blob/master/LICENSE)
+
+---
+<h6 align="center">
+Created by
+
+[Amy Goldlist](https://github.com/amygoldlist) &nbsp;&middot;&nbsp;
+[Esteban Angel](https://github.com/estebanangelm) &nbsp;&middot;&nbsp;
+[Veronique Mulholland](https://github.com/vmulholl)
+</a></h4>
