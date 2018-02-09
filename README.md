@@ -1,10 +1,10 @@
 
 
-<h2 align="center">
+<h5 align="center">
   <br>
 <img src="doc/pictures/p_toolkit_logo.png" alt="p_toolkit" width="200"></a>
 <br>
-</h2>
+</h5>
 
 <h4 align="center">A toolkit for adjusting and visualizing p values</a>.</h4>
 
