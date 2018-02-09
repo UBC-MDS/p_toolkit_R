@@ -7,7 +7,7 @@
 <h4 align="center">A toolkit for adjusting and visualizing p values</a>.</h4>
 
 <h5 align="center">
-<br>Created by</a></h5>
+Created by</a></h5>
 
 <h4 align="center">
 
@@ -15,7 +15,7 @@
 [Esteban Angel](https://github.com/estebanangelm) &nbsp;&middot;&nbsp;
 [Veronique Mulholland](https://github.com/vmulholl)
 </a></h4>
-<br>
+
 
 <h4 align="center">
 
@@ -25,7 +25,7 @@
 [![GitHub license](https://img.shields.io/github/license/UBC-MDS/p_toolkit_R.svg?style=social)](https://github.com/UBC-MDS/p_toolkit_R/blob/master/LICENSE)
 </a></h4>
 
-<br>
+
 <h1></h1>
 <h4 align="center">
   <a href="#key-features">Key Features</a> &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
