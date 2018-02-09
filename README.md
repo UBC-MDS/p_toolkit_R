@@ -16,7 +16,7 @@ Created by</a></h5>
 [Veronique Mulholland](https://github.com/vmulholl)
 </a></h4>
 
-
+<br>
 <h4 align="center">
 
 [![GitHub forks](https://img.shields.io/github/forks/UBC-MDS/p_toolkit_R.svg?style=social)](https://github.com/UBC-MDS/p_toolkit_R/network)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
