@@ -1,5 +1,3 @@
-
-
 <h5 align="center">
   <br>
 <img src="doc/pictures/p_toolkit_logo.png" alt="p_toolkit" width="200"></a>
@@ -7,6 +5,17 @@
 </h5>
 
 <h4 align="center">A toolkit for adjusting and visualizing p values</a>.</h4>
+
+<h5 align="center">
+<br>Created by</a></h5>
+
+<h4 align="center">
+
+[Amy Goldlist](https://github.com/amygoldlist) &nbsp;&middot;&nbsp;
+[Esteban Angel](https://github.com/estebanangelm) &nbsp;&middot;&nbsp;
+[Veronique Mulholland](https://github.com/vmulholl)
+</a></h4>
+<br>
 
 <h4 align="center">
 
