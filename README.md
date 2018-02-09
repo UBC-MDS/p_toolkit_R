@@ -32,6 +32,16 @@
 
 ## Key Features
 
+p_toolkit is a package designed to help adjust and visualize p-values when using multiple comparisons.  As computing power has become powerful enough to run hundreds or even thousands of statistical tests, it is important to look at small p-values and try to understand whether the result is small simply by chance, or whether it truly is significant.  There are many tools to help decide when to reject a Null hypothesis, which can control either:
+
+*  The chance of committing a type 1 error (rejecting a null hypothesis given that it is true) on a single test
+* The chance of committing at least one type 1 error in *m* tests
+* The chance of a null hypothesis being true given that we have rejected it, the False Discovery rate (FDR)
+
+We can use the p-values alone, or an adjustment method such as the Bonferroni  or the Benjamini-Hochberg (BH) methods.  We can also use visualization methods such as QQ-plots or a scatter plot of the p-values, to try and detect patterns.
+
+This package aims to combine these methods in a simple-to-use format, which works by outputting dataframes, which contain results from several adjustment methods.
+
 | Functions    | Description                                         | Inputs                           | Outputs                                               |
 |--------------|-----------------------------------------------------|----------------------------------|-------------------------------------------------------|
 | `p_methods`  | Bonferroni, BH summary of adjusted pvals            | df/vector, p-value column, alpha | DATAFRAME<br> variable, raw pval, adjusted pvals      |
@@ -40,7 +50,7 @@
 | `p_qq`       | qq plot labeling per method the significant pvals   |                                  |                                                       |
 | *`p_matrix`  | Confusion matrix with FDR (reverse of type I error) |                                  |                                                       |
 | *`p_summary` | Summary listing  FDR rate                           |                                  |                                                       |
-* Bonus functions for data with labels
+ \* Bonus functions for data with labels
 
 ## How To Use
 
