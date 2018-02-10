@@ -100,6 +100,9 @@ Python:
 
 [MIT License](https://github.com/UBC-MDS/p_toolkit_R/blob/master/LICENSE)
 
+Interested in contributing?
+See our [Contributing Guidelines](https://github.com/UBC-MDS/p_toolkit_R/blob/master/CONTRIBUTING.md) and [Code of Conduct](https://github.com/UBC-MDS/p_toolkit_R/blob/master/Conduct.md).
+
 ---
 <h6 align="center">
 Created by
