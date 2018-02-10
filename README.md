@@ -69,15 +69,24 @@ This package aims to combine these methods in a simple-to-use format, which work
 
 ### Similar Packages and Functions
 
-R:
+Some packages already exist for the p-value adjustment in both environments, R and Python:
 
-* [`fdrtool`](https://www.rdocumentation.org/packages/fdrtool/versions/1.2.15)
+**R:**
 
 * [`stats::p.adjust`](https://www.rdocumentation.org/packages/stats/versions/3.4.3)
 
-Python:
+The `p.adjust` function comes in the base `stats` library in R. It's a function designed for adjusting an array of p-values using six methods, some for controlling the family-wise error ("holm", "Hochberg", "Hommel", "Bonferroni") and the others for controlling the false discovery rate ("BH", "BY","fdr"). The advantage of this function is its simplicity and that it comes in the `stats` library, which is built in in the default environments in R, so the user doesn't need to install external packages. It doesn't let the user analyze deeper what is going on with the tests; this is a key element of `p_toolkit`.
 
-* [`statsmodels.stats.multitest`](http://www.statsmodels.org/dev/_modules/statsmodels/stats/multitest.html)
+* [`fdrtool`](https://www.rdocumentation.org/packages/fdrtool/versions/1.2.15)
+
+`fdrtool` is a package designed for analyzing the False Discovery Rate in statistical tests and not limited exclusively to p-value adjustment. Has some functions related to `p_toolkit` like `fdrtool`, which calculates and plots the false discovery rate and `pval.estimate.eta0`, which outputs the proportion of null p-values in a list.
+
+
+**Python:**
+
+* [`statsmodels.sandbox.stats.multicomp.multipletests`](http://www.statsmodels.org/devel/generated/statsmodels.sandbox.stats.multicomp.multipletests.html#statsmodels.sandbox.stats.multicomp.multipletests)
+
+This function is part of the `statsmodels` library, a complete set of functions for implementing statistical methods in Python. It works similar to R's `p.adjust`, receiving an array of p-values as inputs and returning two arrays: one with the corrected p-values and another one with boolean values corresponding to the new logical values after correction. It has no diagnostics and analysis of the results.
 
 ## License
 
