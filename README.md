@@ -53,6 +53,7 @@ This package aims to combine these methods in a simple-to-use format, which work
 
 ### Package Functions
 The following table gives a high level overview of the proposed functions in `p_toolkit`.
+
 | Functions    | Description                                         | Inputs                           | Outputs                                               |
 |--------------|-----------------------------------------------------|----------------------------------|-------------------------------------------------------|
 | `p_methods`  | Bonferroni, BH summary of adjusted pvals            | df/vector, p-value column, alpha | DATAFRAME<br> variable, raw pval, adjusted pvals      |
