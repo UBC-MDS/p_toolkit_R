@@ -2,17 +2,9 @@ Package: ptoolkit
 Title: A toolkit for adjusting and visualizing p-values coming from multiple tests
 Version: 0.0.0.9000
 Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: p_toolkit is a package designed to help adjust and visualize p-values when using multiple comparisons.  As computing power has become powerful enough to run hundreds or even thousands of statistical tests, it is important to look at small p-values and try to understand whether the result is small simply by chance, or whether it truly is significant.  There are many tools to help decide when to reject a Null hypothesis, which can control either:
-
-* The chance of committing a type 1 error (rejecting a null hypothesis given that it is true) on a single test
-* The chance of committing at least one type 1 error in *m* tests
-* The chance of a null hypothesis being true given that we have rejected it, the False Discovery rate (FDR)
-
-We can use the p-values alone, or an adjustment method such as the Bonferroni  or the Benjamini-Hochberg (BH) methods.  We can also use visualization methods such as QQ-plots or a scatter plot of the p-values, to try and detect patterns.
-
-This package aims to combine these methods in a simple-to-use format, which works by outputting dataframes, which contain results from several adjustment methods.
-
+Description: p_toolkit is a package designed to help adjust and visualize p-values when using multiple comparisons.  
 Depends: R (>= 3.4.3)
 License: MIT licence
 Encoding: UTF-8
 LazyData: true
+Suggests: testthat
