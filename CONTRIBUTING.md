@@ -22,3 +22,37 @@ Remember that commit messages are the way to remember what was done, and keep me
 ### Directory Structure
 
 Keep all documents in the correct folder, when in doubt, ask the other contributors (perhaps in an issue?).  Remember to cite any sources in the `doc\references\README.md`, which documents any citations.
+
+
+### Git Commands
+
+1. Create a new branch
+    ```
+    git branch -b [BRANCH NAME]
+    ```
+2. After completing some tasks:
+
+    1. Add *all* files that have been worked on
+        ```
+        git add .
+        ```
+   2. Add commit message
+       ```
+       git commit -m '[COMMIT MESSAGE]'
+       ```
+   3. Push from new branch for the first time
+       ```
+       git push --set-upstream origin [BRANCH NAME]
+       ```
+   4. Push anytime after that
+       ```
+       git push
+       ```
+   5. Navigate to  [Compare changes](https://github.com/UBC-MDS/ptoolkit/compare) and create pull request for the branch of interest.
+
+   6. Wait for a member of the team to merge [pull request](https://github.com/UBC-MDS/ptoolkit/pulls).
+
+3. If you need to update the branch that you are currently working in with the updated master branch:
+    ```
+    git pull origin master
+    ```
