@@ -48,7 +48,7 @@ Keep all documents in the correct folder, when in doubt, ask the other contribut
        ```
        git push
        ```
-   5. Navigate to  [Compare changes]https://github.com/UBC-MDS/ptoolkit/compare) and create pull request for the branch of interest.
+   5. Navigate to  [Compare changes](https://github.com/UBC-MDS/ptoolkit/compare) and create pull request for the branch of interest.
 
    6. Wait for a member of the team to merge [pull request](https://github.com/UBC-MDS/ptoolkit/pulls).
 
