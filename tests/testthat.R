@@ -111,18 +111,34 @@ test_that("p_methods basic dataframe functionality", {
 ###p_qq functionality tests
 ## This thread was very helpful for plot tests
 ## https://stackoverflow.com/questions/31038709/how-to-write-a-test-for-a-ggplot-plot
+## https://stackoverflow.com/questions/13457562/how-to-determine-the-geom-type-of-each-layer-of-a-ggplot2-object
+
+test_that("p_qq outputs a ggplot object", {
+  p <- p_qq(df)
+  expect_true(is.ggplot(p))
+})
 
 test_that("p_qq axis labels and title", {
   p <- p_qq(df)
-  expect_true(is.ggplot(p))
   expect_identical(p$labels$y, "Observed -log(p)")
   expect_identical(p$labels$x, "Expected -log(p)")
+})
+
+test_that("p_qq uses geom_point and geom_abline", {
+  p <- p_qq(df)
+  ## Used code for getting geoms from this thread:
+  ## https://stackoverflow.com/questions/13457562/how-to-determine-the-geom-type-of-each-layer-of-a-ggplot2-object
+
+  geoms <- sapply(p$layers, function(x) class(x$geom)[1])
+  expect_true("GeomPoint" %in% geoms)
+  expect_true("GeomVline" %in% geoms)
+
 })
 
 test_that("p_qq plot mapping", {
   p <- p_qq(df)
   expect_true(is.ggplot(p))
-  expect_identical(p$labels$y, "Observed -log(p)")
-  expect_identical(p$labels$x, "Expected -log(p)")
+  expect_identical(p$mapping$y, "theoretical_pvalues")
+  expect_identical(p$mapping$x, "real_pvalues")
 })
 
