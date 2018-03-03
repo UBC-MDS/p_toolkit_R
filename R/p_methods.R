@@ -2,6 +2,7 @@ p_methods <- function(data, pv_index, alpha){
   #
   ## A summary dataframe with columns for the p-values, adjusted p-values
   ## for both Bonferroni and Benjamini-Hochberg (BH), adjusted significance
+
   ## level for Bonferroni and the critical value for BH
   #
   ## Args:
@@ -20,3 +21,4 @@ p_methods <- function(data, pv_index, alpha){
   #
 
 }
+
