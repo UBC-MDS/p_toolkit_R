@@ -85,26 +85,44 @@ test_that("p_adjust basic dataframe functionality", {
 ###p_methods basic functionality
 test_that("p_methods basic vector functionality", {
   expect_equal(p_methods(data = c(0.07), alpha = 0.05),
-               data.frame(p_value = c(0.07), 
-                          Bonferroni_critical_value = c(0.05),Bonferroni_reject =c(FALSE), 
+               data.frame(p_value = c(0.07),
+                          Bonferroni_critical_value = c(0.05),Bonferroni_reject =c(FALSE),
                           BH_critical_value = c(0.05), BH_reject = FALSE))
   expect_equal(p_methods(data = c(0.01), alpha = 0.05),
-              data.frame(p_value = c(0.01), 
-                          Bonferroni_critical_value = c(0.01),Bonferroni_reject =c(TRUE), 
-                          BH_critical_value = c(0.01), BH_reject = TRUE))               
+              data.frame(p_value = c(0.01),
+                          Bonferroni_critical_value = c(0.01),Bonferroni_reject =c(TRUE),
+                          BH_critical_value = c(0.01), BH_reject = TRUE))
 })
-  
+
 
 test_that("p_methods basic dataframe functionality", {
   expect_equal(p_methods(data = data.frame(test = c("test 1"),p=c(0.07)),column ="p", alpha = 0.05),
                data.frame(test = c("test 1"),
-                          p_value = c(0.07), 
-                          Bonferroni_critical_value = c(0.05),Bonferroni_reject =c(FALSE), 
+                          p_value = c(0.07),
+                          Bonferroni_critical_value = c(0.05),Bonferroni_reject =c(FALSE),
                           BH_critical_value = c(0.05), BH_reject = FALSE))
   expect_equal(p_methods(data = data.frame(test = c("test 1"),p=c(0.07)),column ="p", alpha = 0.05),
                data.frame(test = c("test 1"),
-                          p_value = c(0.01), 
-                          Bonferroni_critical_value = c(0.05),Bonferroni_reject =c(TRUE), 
-                          BH_critical_value = c(0.05), BH_reject = TRUE))             
+                          p_value = c(0.01),
+                          Bonferroni_critical_value = c(0.05),Bonferroni_reject =c(TRUE),
+                          BH_critical_value = c(0.05), BH_reject = TRUE))
 })
-              
+
+###p_qq functionality tests
+## This thread was very helpful for plot tests
+## https://stackoverflow.com/questions/31038709/how-to-write-a-test-for-a-ggplot-plot
+
+test_that("p_qq axis labels and title", {
+  p <- p_qq(df)
+  expect_true(is.ggplot(p))
+  expect_identical(p$labels$y, "Observed -log(p)")
+  expect_identical(p$labels$x, "Expected -log(p)")
+})
+
+test_that("p_qq plot mapping", {
+  p <- p_qq(df)
+  expect_true(is.ggplot(p))
+  expect_identical(p$labels$y, "Observed -log(p)")
+  expect_identical(p$labels$x, "Expected -log(p)")
+})
+
