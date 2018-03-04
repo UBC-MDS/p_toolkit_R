@@ -218,4 +218,3 @@ test_that("p_plot plot mapping", {
   expect_identical(p$mapping$y, "pvalue")
   expect_identical(p$mapping$x, "k")
 })
-
