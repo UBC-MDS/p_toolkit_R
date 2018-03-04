@@ -3,7 +3,7 @@ p_adjust <- function(data, pv_index, alpha){
   # This function executes an specific p-value adjustment method.
   #
   ## Args:
-  #   -  data (dataframe): dataframe containing at least a column of p-values to be adjusted
+  #   - data (dataframe): dataframe containing at least a column of p-values to be adjusted
   #   - col (int): if the input is a dataframe, col refers to the column name of the dataframe that has the p-values.
   #   - alpha (numeric): significance level for both methods.
   #   - method (string): method used for the adjustment ("bh" or "bonf")
