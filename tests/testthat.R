@@ -7,16 +7,16 @@ test_check("ptoolkit")
 ####p_bh_helper functionality tests
 
 test_that("p_bh_helper basic functionality", {
-  expect_equal(p_bh_helper(c(0.07), alpha = 0.05), c(0.07))
+  expect_equal(p_bh_helper(c(0.07)), c(0.07))
 
-  expect_equal(p_bh_helper(c(0.07, 0.2), alpha =0.05), c(0.14, 0.2))
+  expect_equal(p_bh_helper(c(0.07, 0.2)), c(0.14, 0.2))
   expect_equal(p_bh_helper(c(0.2, 0.07), alpha = 0.05), c(0.2, 0.14))
 
-  expect_equal(p_bh_helper(c(0.01, 0.02, 0.03), alpha = 0.05), c(0.03, 0.03,0.03))
+  expect_equal(p_bh_helper(c(0.01, 0.02, 0.03)), c(0.03, 0.03,0.03))
 
-  expect_equal(p_bh_helper(c(0.02, 0.03, 0.01), alpha =0.05), c(0.03,0.03,0.03))
+  expect_equal(p_bh_helper(c(0.02, 0.03, 0.01)), c(0.03,0.03,0.03))
 
-  expect_equal(p_bh_helper(c(.02,.12,.24,.56,.6), alpha =0.05), c(0.1,0.6, 0.4,0.7, 0.6))
+  expect_equal(p_bh_helper(c(.02,.12,.24,.56,.6)), c(0.1,0.6, 0.4,0.7, 0.6))
 })
 
 test_that("p_bh_helper repeated values index the same",{
@@ -40,8 +40,8 @@ test_that("p_bh_helper all values are between 0 and 1", {
 
 test_that("p_bonferroni_helper basic functionality", {
   expect_equal(p_bonferoni_helper(c(0.07)), c(0.07))
-  expect_equal(p_bonferoni_helper(c(0.07, 0.2)), c(0.14, 0.2))
-  expect_equal(p_bonferoni_helper(c(0.2, 0.07)), c(0.2, 0.14))
+  expect_equal(p_bonferoni_helper(c(0.07, 0.2)), c(0.14, 0.4))
+  expect_equal(p_bonferoni_helper(c(0.2, 0.07)), c(0.4, 0.14))
   expect_equal(p_bonferoni_helper(c(0.01, 0.02, 0.03)), c(0.03, 0.06,0.09))
 })
 
@@ -76,10 +76,10 @@ test_that("p_adjust basic dataframe functionality", {
                data.frame(test = c("test 1"), p_value = c(0.07), adjusted = c(0.07))      )
   expect_equal(p_adjust(data = data.frame(test = c("test 1"),p=c(0.07)),column ="p", method = "BH"),
                data.frame(test = c("test 1"), p_value = c(0.07), adjusted = c(0.07))      )
-  expect_equal(p_adjust(data = data.frame(test = c("test 1"),p=c(0.07,0.2)),column ="p", method = "Bonferroni"),
-               data.frame(test = c("test 1"), p_value = c(0.07,0.2), adjusted = c(0.14,0.4))      )
-  expect_equal(p_adjust(data = data.frame(test = c("test 1"),p=c(0.07,0.2)),column ="p", method = "BH"),
-               data.frame(test = c("test 1"), p_value = c(0.07,0.2), adjusted = c(0.14,0.2))      )
+  expect_equal(p_adjust(data = data.frame(test = c("test 1", "test 2"),p=c(0.07,0.2)),column ="p", method = "Bonferroni"),
+               data.frame(test = c("test 1", "test 2"), p_value = c(0.07,0.2), adjusted = c(0.14,0.4))      )
+  expect_equal(p_adjust(data = data.frame(test = c("test 1", "test 2"),p=c(0.07,0.2)),column ="p", method = "BH"),
+               data.frame(test = c("test 1", "test 2"), p_value = c(0.07,0.2), adjusted = c(0.14,0.2))      )
 })
 
 ###p_methods basic functionality
@@ -90,8 +90,12 @@ test_that("p_methods basic vector functionality", {
                           BH_critical_value = c(0.05), BH_reject = FALSE))
   expect_equal(p_methods(data = c(0.01), alpha = 0.05),
               data.frame(p_value = c(0.01), 
-                          Bonferroni_critical_value = c(0.01),Bonferroni_reject =c(TRUE), 
-                          BH_critical_value = c(0.01), BH_reject = TRUE))               
+                          Bonferroni_critical_value = c(0.05),Bonferroni_reject =c(TRUE), 
+                          BH_critical_value = c(0.05), BH_reject = TRUE))       
+  expect_equal(p_methods(data = c(0.01, 0.03), alpha = 0.05),
+               data.frame(p_value = c(0.01, 0.03), 
+                          Bonferroni_critical_value = c(0.025,0.025),Bonferroni_reject =c(TRUE, FALSE), 
+                          BH_critical_value = c(0.025,0.05), BH_reject = TRUE, TRUE)) 
 })
   
 
@@ -105,6 +109,11 @@ test_that("p_methods basic dataframe functionality", {
                data.frame(test = c("test 1"),
                           p_value = c(0.01), 
                           Bonferroni_critical_value = c(0.05),Bonferroni_reject =c(TRUE), 
-                          BH_critical_value = c(0.05), BH_reject = TRUE))             
+                          BH_critical_value = c(0.05), BH_reject = TRUE))  
+  expect_equal(p_methods(data = data.frame(test = c("test 1", "test 2"),p=c(0.01,0.03)),column ="p", alpha = 0.05),
+               data.frame(test = c("test 1", "test 2"),
+                          p_value = c(0.01, 0.03), 
+                          Bonferroni_critical_value = c(0.025, 0.025),Bonferroni_reject =c(TRUE, FALSE), 
+                          BH_critical_value = c(0.025,0.05), BH_reject = TRUE, TRUE))            
 })
               
