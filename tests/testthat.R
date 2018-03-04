@@ -8,14 +8,14 @@ test_check("ptoolkit")
 
 test_that("p_bh_helper basic functionality", {
   expect_equal(p_bh_helper(c(0.07)), c(0.07))
-  
+
   expect_equal(p_bh_helper(c(0.07, 0.2)), c(0.14, 0.2))
   expect_equal(p_bh_helper(c(0.2, 0.07), alpha = 0.05), c(0.2, 0.14))
-  
+
   expect_equal(p_bh_helper(c(0.01, 0.02, 0.03)), c(0.03, 0.03,0.03))
-  
+
   expect_equal(p_bh_helper(c(0.02, 0.03, 0.01)), c(0.03,0.03,0.03))
-  
+
   expect_equal(p_bh_helper(c(.02,.12,.24,.56,.6)), c(0.1,0.6, 0.4,0.7, 0.6))
 })
 
@@ -32,6 +32,14 @@ test_that("p_bh_helper all values are between 0 and 1", {
   expect_error(p_bh_helper(c(8)), "not a valid probability")
   expect_error(p_bh_helper(c(8,.05)), "not a valid probability")
   expect_error(p_bh_helper(c(0.05,8)), "not a valid probability")
+})
+
+context('testing data types')
+
+test_that('correct data types', {
+  expect_is(p_bh_helper(c(0.07, 0.2)),'vector')
+  expect_is(p_bh_helper(c(0.07, 0.2))$pvals, 'integer')
+  expect_is(p_bh_helper(c(0.07, 0.2))$alpha, 'integer')
 })
 
 
@@ -55,6 +63,14 @@ test_that("p_bonferroni_helper all values are between 0 and 1", {
 
 test_that("p_bonferroni_helper maximum return is 1",{
   expect_equal(p_bonferoni_helper(c(0.4,0.7)), c(0.8,1))
+})
+
+context('testing data types')
+
+test_that('correct data types', {
+  expect_is(p_bonferroni_helper(c(0.07, 0.2)),'vector')
+  expect_is(p_bonferroni_helper(c(0.07, 0.2))$pvals, 'numeric')
+  expect_is(p_bonferroni_helper(c(0.07, 0.2))$alpha, 'numeric')
 })
 
 ####p_adjust basic functionality
@@ -81,39 +97,70 @@ test_that("p_adjust basic dataframe functionality", {
                data.frame(test = c("test 1", "test 2"), p_value = c(0.07,0.2), adjusted = c(0.14,0.2))      )
 })
 
+context('testing data types')
+
+test_that('correct data types', {
+  #outputs
+  expect_is(p_methods(c(0.07, 0.2)),'data.frame')
+  expect_is(p_methods(c(0.07, 0.2))$raw_p_value, 'numeric')
+  expect_is(p_methods(c(0.07, 0.2))$adjusted_p_value, 'numeric')
+  expect_is(p_methods(c(0.07, 0.2))$signficant, 'logical')
+  expect_is(p_methods(c(0.07, 0.2))$critical_value, 'numeric')
+  #inputs
+  expect_is(data, 'data.frame')
+  expect_is(alpha, 'numeric')
+  expect_is(col, 'integer')
+  expect_is(method, 'string')
+})
+
 ###p_methods basic functionality
 test_that("p_methods basic vector functionality", {
   expect_equal(p_methods(data = c(0.07), alpha = 0.05),
-               data.frame(p_value = c(0.07), 
-                          Bonferroni_critical_value = c(0.05),Bonferroni_reject =c(FALSE), 
+               data.frame(p_value = c(0.07),
+                          Bonferroni_critical_value = c(0.05),Bonferroni_reject =c(FALSE),
                           BH_critical_value = c(0.05), BH_reject = FALSE))
   expect_equal(p_methods(data = c(0.01), alpha = 0.05),
-               data.frame(p_value = c(0.01), 
-                          Bonferroni_critical_value = c(0.05),Bonferroni_reject =c(TRUE), 
-                          BH_critical_value = c(0.05), BH_reject = TRUE))       
+               data.frame(p_value = c(0.01),
+                          Bonferroni_critical_value = c(0.05),Bonferroni_reject =c(TRUE),
+                          BH_critical_value = c(0.05), BH_reject = TRUE))
   expect_equal(p_methods(data = c(0.01, 0.03), alpha = 0.05),
-               data.frame(p_value = c(0.01, 0.03), 
-                          Bonferroni_critical_value = c(0.025,0.025),Bonferroni_reject =c(TRUE, FALSE), 
-                          BH_critical_value = c(0.025,0.05), BH_reject = TRUE, TRUE)) 
+               data.frame(p_value = c(0.01, 0.03),
+                          Bonferroni_critical_value = c(0.025,0.025),Bonferroni_reject =c(TRUE, FALSE),
+                          BH_critical_value = c(0.025,0.05), BH_reject = TRUE, TRUE))
 })
 
 
 test_that("p_methods basic dataframe functionality", {
   expect_equal(p_methods(data = data.frame(test = c("test 1"),p=c(0.07)),column ="p", alpha = 0.05),
                data.frame(test = c("test 1"),
-                          p_value = c(0.07), 
-                          Bonferroni_critical_value = c(0.05),Bonferroni_reject =c(FALSE), 
+                          p_value = c(0.07),
+                          Bonferroni_critical_value = c(0.05),Bonferroni_reject =c(FALSE),
                           BH_critical_value = c(0.05), BH_reject = FALSE))
   expect_equal(p_methods(data = data.frame(test = c("test 1"),p=c(0.07)),column ="p", alpha = 0.05),
                data.frame(test = c("test 1"),
-                          p_value = c(0.01), 
-                          Bonferroni_critical_value = c(0.05),Bonferroni_reject =c(TRUE), 
-                          BH_critical_value = c(0.05), BH_reject = TRUE))  
+                          p_value = c(0.01),
+                          Bonferroni_critical_value = c(0.05),Bonferroni_reject =c(TRUE),
+                          BH_critical_value = c(0.05), BH_reject = TRUE))
   expect_equal(p_methods(data = data.frame(test = c("test 1", "test 2"),p=c(0.01,0.03)),column ="p", alpha = 0.05),
                data.frame(test = c("test 1", "test 2"),
-                          p_value = c(0.01, 0.03), 
-                          Bonferroni_critical_value = c(0.025, 0.025),Bonferroni_reject =c(TRUE, FALSE), 
-                          BH_critical_value = c(0.025,0.05), BH_reject = TRUE, TRUE))            
+                          p_value = c(0.01, 0.03),
+                          Bonferroni_critical_value = c(0.025, 0.025),Bonferroni_reject =c(TRUE, FALSE),
+                          BH_critical_value = c(0.025,0.05), BH_reject = TRUE, TRUE))
+})
+
+context('testing data types')
+
+test_that('correct data types', {
+  #outputs
+  expect_is(p_methods(c(0.07, 0.2)),'data.frame')
+  expect_is(p_methods(c(0.07, 0.2))$bh_val, 'numeric')
+  expect_is(p_methods(c(0.07, 0.2))$bonf_val, 'numeric')
+  expect_is(p_methods(c(0.07, 0.2))$Bonf_significant, 'logical')
+  expect_is(p_methods(c(0.07, 0.2))$BH_significant, 'logical')
+  #inputs
+  expect_is(data, 'data.frame')
+  expect_is(pv_index, 'integer')
+  expect_is(alpha, 'numeric')
 })
 
 ###p_qq functionality tests
