@@ -103,6 +103,18 @@ test_that('correct data types', {
   expect_is(p_bonferroni_helper(c(0.07, 0.2)),'data.frame')
   expect_is(p_bonferroni_helper(c(0.07, 0.2))$pvals, 'numeric')
   expect_is(p_bonferroni_helper(c(0.07, 0.2))$alpha, 'numeric')
+
+  #outputs
+  expect_is(p_methods(c(0.07, 0.2)),'data.frame')
+  expect_is(p_methods(c(0.07, 0.2))$raw_p_value, 'numeric')
+  expect_is(p_methods(c(0.07, 0.2))$adjusted_p_value, 'numeric')
+  expect_is(p_methods(c(0.07, 0.2))$signficant, 'logical')
+  expect_is(p_methods(c(0.07, 0.2))$critical_value, 'numeric')
+  #inputs
+  expect_is(data, 'data.frame')
+  expect_is(alpha, 'numeric')
+  expect_is(col, 'integer')
+  expect_is(method, 'string')
 })
 
 ###p_methods basic functionality
@@ -218,3 +230,7 @@ test_that("p_plot plot mapping", {
   expect_identical(p$mapping$y, "pvalue")
   expect_identical(p$mapping$x, "k")
 })
+
+=======
+
+
