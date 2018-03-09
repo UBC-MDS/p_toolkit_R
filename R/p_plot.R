@@ -1,7 +1,7 @@
 library(ggplot)
 library(dplyr)
 
-p_plot <- function(ad_object){
+p_plot <- function(data){
   # This function plots all the p-values in ascending order and compares them with two lines, one representing
   # the BH cutoff point and another one the Bonferroni cutoff.
   #
