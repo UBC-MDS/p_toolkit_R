@@ -12,5 +12,13 @@ p_qq <- function(data){
   #
   # Returns:
   #   - plot: a ggplot object with the qq plot.
+  data <- data %>%
+    arrange(p_value) %>%
+    mutate(log_transf = -log10(p_value),
+           rank = row_number(),
+           log_exp = -log10(rank/length(data$rank)))
+
+  m <- length(data$p_value)
+  alpha <- data$value[1]
 }
 
