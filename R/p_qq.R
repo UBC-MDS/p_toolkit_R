@@ -1,3 +1,6 @@
+library(ggplot)
+library(dplyr)
+
 p_qq <- function(ad_object){
   # This function plots all the raw p-values and compares them with a theoretical uniform distribution using a
   # qq plot. This plot is created with a negative log scale, letting
