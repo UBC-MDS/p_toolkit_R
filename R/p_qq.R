@@ -20,5 +20,15 @@ p_qq <- function(data){
 
   m <- length(data$p_value)
   alpha <- data$value[1]
+
+  plot <- ggplot(data)+
+    geom_point(aes(log_exp,log_transf))+
+    geom_path(aes(log_exp,log_exp),color="red")+
+    scale_y_continuous("Observed -log10(p)")+
+    scale_x_continuous("Expected -log10(p)")+
+    ggtitle("QQ")+
+    theme_bw()+
+    theme(plot.title = element_text(hjust = 0.5))
+  return(list(plot))
 }
 
