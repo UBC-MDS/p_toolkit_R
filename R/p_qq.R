@@ -1,4 +1,7 @@
-p_qq <- function(ad_object){
+library(ggplot)
+library(dplyr)
+
+p_qq <- function(data){
   # This function plots all the raw p-values and compares them with a theoretical uniform distribution using a
   # qq plot. This plot is created with a negative log scale, letting
   # us visualize all the p-values, independent of their small magnitudes. The p-values deviated from the diagonal line,
@@ -9,5 +12,23 @@ p_qq <- function(ad_object){
   #
   # Returns:
   #   - plot: a ggplot object with the qq plot.
+  data <- data %>%
+    arrange(p_value) %>%
+    mutate(log_transf = -log10(p_value),
+           rank = row_number(),
+           log_exp = -log10(rank/length(data$rank)))
+
+  m <- length(data$p_value)
+  alpha <- data$value[1]
+
+  plot <- ggplot(data)+
+    geom_point(aes(log_exp,log_transf))+
+    geom_path(aes(log_exp,log_exp),color="red")+
+    scale_y_continuous("Observed -log10(p)")+
+    scale_x_continuous("Expected -log10(p)")+
+    ggtitle("QQ")+
+    theme_bw()+
+    theme(plot.title = element_text(hjust = 0.5))
+  return(list(plot))
 }
 
