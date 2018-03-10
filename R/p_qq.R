@@ -1,17 +1,26 @@
-library(ggplot)
-library(dplyr)
+#' This function plots all the raw p-values and compares them with a theoretical uniform distribution using a
+#' qq plot. This plot is created with a negative log scale, letting
+#' us visualize all the p-values, independent of their small magnitudes. The p-values deviated from the diagonal line,
+#' are the ones that are significant.
+#'
+#' Args:
+#'   - ad_object: the dataframe output from the p_methods function.
+#'
+#' Returns:
+#'   - plot: a ggplot object with the qq plot.
+
+
+#' Title
+#'
+#' @param data
+#'
+#' @return
+#' @export
+#'
+#' @examples
 
 p_qq <- function(data){
-  # This function plots all the raw p-values and compares them with a theoretical uniform distribution using a
-  # qq plot. This plot is created with a negative log scale, letting
-  # us visualize all the p-values, independent of their small magnitudes. The p-values deviated from the diagonal line,
-  # are the ones that are significant.
-  #
-  # Args:
-  #   - ad_object: the dataframe output from the p_methods function.
-  #
-  # Returns:
-  #   - plot: a ggplot object with the qq plot.
+
   data <- data %>%
     arrange(p_value) %>%
     mutate(log_transf = -log10(p_value),
@@ -31,4 +40,3 @@ p_qq <- function(data){
     theme(plot.title = element_text(hjust = 0.5))
   return(list(plot))
 }
-

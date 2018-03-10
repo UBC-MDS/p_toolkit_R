@@ -1,15 +1,23 @@
-library(ggplot)
-library(dplyr)
+#' This function plots all the p-values in ascending order and compares them with two lines, one representing
+#' the BH cutoff point and another one the Bonferroni cutoff.
+#'
+#' Args:
+#'   - ad_object: the dataframe output from the p_methods function.
+#'
+#' Returns:
+#'   - plot: a ggplot with the p-values and both cut-off lines.
+
+#' Title
+#'
+#' @param data
+#'
+#' @return
+#' @export
+#'
+#' @examples
 
 p_plot <- function(data){
-  # This function plots all the p-values in ascending order and compares them with two lines, one representing
-  # the BH cutoff point and another one the Bonferroni cutoff.
-  #
-  # Args:
-  #   - ad_object: the dataframe output from the p_methods function.
-  #
-  # Returns:
-  #   - plot: a ggplot with the p-values and both cut-off lines.
+
 
   data <- data %>%
     arrange(p_value) %>%
@@ -29,4 +37,5 @@ p_plot <- function(data){
     theme(plot.title = element_text(hjust = 0.5))
   return(list(plot))
 }
+
 
