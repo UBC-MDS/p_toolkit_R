@@ -40,4 +40,3 @@ p_qq <- function(data){
     theme(plot.title = element_text(hjust = 0.5))
   return(list(plot))
 }
-
