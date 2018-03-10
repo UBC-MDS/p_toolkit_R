@@ -16,7 +16,21 @@
 #'
 #' @examples
 
-p_plot <- function(data){
+p_plot <- function(data, pv_index,alpha = 0.05){
+  require(dplyr)
+  require(ggplot2)
+
+  if(is.data.frame(data)){
+    ###change the pv_index column to p_value, in a dataframe
+    df <- select(data, p_value = c(pv_index))
+    data <- cbind(data, df)
+    data <- select(data,-one_of(pv_index))
+  }
+
+  else {
+    ###if it's a vector, make it a dataframe of one column
+    data <- data.frame(p_value = data)
+  }
 
 
   data <- data %>%
@@ -24,7 +38,7 @@ p_plot <- function(data){
     mutate(rank = row_number())
 
   m <- length(data$p_value)
-  alpha <- data$value[1]
+  #alpha <- data$value[1]
 
   plot <- ggplot(data)+
     geom_point(aes(rank,p_value))+
@@ -35,7 +49,7 @@ p_plot <- function(data){
     ggtitle("Bonferroni vs BH")+
     theme_bw()+
     theme(plot.title = element_text(hjust = 0.5))
-  return(list(plot))
+  return(plot)
 }
 
 

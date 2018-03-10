@@ -1,4 +1,3 @@
-#library(dplyr)
 
 
 
@@ -29,6 +28,7 @@
 #' @return df
 
 p_methods <- function(data, pv_index, alpha=0.05){
+  require(dplyr)
   if(is.data.frame(data)){
     ###change the pv_index column to p_value, in a dataframe
     df <- select(data, p_value = c(pv_index))
