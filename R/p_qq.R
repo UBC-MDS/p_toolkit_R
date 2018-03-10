@@ -13,6 +13,7 @@
 #' Title
 #'
 #' @param data
+#' @param pv_index
 #'
 #' @return
 #' @export
@@ -26,23 +27,24 @@ p_qq <- function(data, pv_index){
   if(is.data.frame(data)){
     ###change the pv_index column to p_value, in a dataframe
     df <- select(data, p_value = c(pv_index))
-    df <- cbind(data, df)
-    df <- select(df,-one_of(pv_index))
+    data <- cbind(data, df)
+    data <- select(data,-one_of(pv_index))
   }
 
   else {
     ###if it's a vector, make it a dataframe of one column
-    df <- data.frame(p_value = data)
+    data <- data.frame(p_value = data)
   }
+
+  m <- length(data$p_value)
+  #alpha <- data$value[1]
 
   data <- data %>%
     arrange(p_value) %>%
     mutate(log_transf = -log10(p_value),
            rank = row_number(),
-           log_exp = -log10(rank/length(data$rank)))
+           log_exp = -log10(rank/m))
 
-  m <- length(data$p_value)
-  alpha <- data$value[1]
 
   plot <- ggplot(data)+
     geom_point(aes(log_exp,log_transf))+
@@ -52,5 +54,8 @@ p_qq <- function(data, pv_index){
     ggtitle("QQ")+
     theme_bw()+
     theme(plot.title = element_text(hjust = 0.5))
-  return(list(plot))
+  return(plot)
 }
+
+
+
