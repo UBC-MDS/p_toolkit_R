@@ -19,20 +19,24 @@
 #' @examples
 #'
 #' # Trial
-nSims <- 100 #number of simulated experiments
-p <-numeric(nSims) #set up empty container for all simulated p-values
+#'
+#'
+#nSims <- 100 #number of simulated experiments
+#p <-numeric(nSims) #set up empty container for all simulated p-values
 
-for(i in 1:nSims){ #for each simulated experiment
-  x<-rnorm(n = 100, mean = 10, sd = 8) #produce 100 simulated participants
+#for(i in 1:nSims){ #for each simulated experiment
+ # x<-rnorm(n = 100, mean = 10, sd = 8) #produce 100 simulated participants
   #with mean=10 and SD=8
-  y<-rnorm(n = 100, mean = 30, sd = 5) #produce 100 simulated participants
+ # y<-rnorm(n = 100, mean = 30, sd = 5) #produce 100 simulated participants
   #with mean=30 and SD=5
-  z<-t.test(x,y) #perform the t-test
-  p[i]<-z$p.value #get the p-value and store it
-}
-p_adjust(p ,1, "bonf",0.05)
+ # z<-t.test(x,y) #perform the t-test
+  #p[i]<-z$p.value #get the p-value and store it
+#}
+#p_adjust(p ,1, "bonf",0.05)
 #'
 #'
+
+
 p_adjust <- function(data, pv_index, method, alpha=0.05){
   require(dplyr)
   if(is.data.frame(data)){

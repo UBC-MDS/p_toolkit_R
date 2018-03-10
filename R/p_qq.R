@@ -19,7 +19,21 @@
 #'
 #' @examples
 
-p_qq <- function(data){
+p_qq <- function(data, pv_index){
+  require(dplyr)
+  require(ggplot2)
+
+  if(is.data.frame(data)){
+    ###change the pv_index column to p_value, in a dataframe
+    df <- select(data, p_value = c(pv_index))
+    df <- cbind(data, df)
+    df <- select(df,-one_of(pv_index))
+  }
+
+  else {
+    ###if it's a vector, make it a dataframe of one column
+    df <- data.frame(p_value = data)
+  }
 
   data <- data %>%
     arrange(p_value) %>%
