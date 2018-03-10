@@ -2,9 +2,10 @@ Package: ptoolkit
 Title: A toolkit for adjusting and visualizing p-values coming from multiple tests
 Version: 0.0.0.9000
 Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: p_toolkit is a package designed to help adjust and visualize p-values when using multiple comparisons.  
+Description: p_toolkit is a package designed to help adjust and visualize p-values when using multiple comparisons.
 Depends: R (>= 3.4.3)
 License: MIT licence
 Encoding: UTF-8
 LazyData: true
+Imports: dplyr, ggplot2
 Suggests: testthat
