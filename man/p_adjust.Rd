@@ -5,12 +5,14 @@
 \title{P-value Corrections}
 \description{This function executes an specific p-value adjustment method.}
 \arguments{
+
   \item{data (dataframe)} {dataframe containing at least a column of p-values to be adjusted}
   \item{pv_index (int)} {if the input is a dataframe, col refers to the column name of the dataframe that has the p-values.}
-  \item{method (numeric)} {significance level for both methods.}
-  \item{alpha (string)} {method used for the adjustment ("bh" or "bonf")}
+  \item{method (string)} {method used for the adjustment ("bh" or "bonf")}
+  \item{alpha (numeric)} {significance level for both methods}
            }
 \usage{p_adjust(data, pv_index, method, alpha=0.05)}
+
 \examples{
 Adapted from https://matthew-brett.github.io/teaching/fdr.html
 nSims <- 100 #number of simulated experiments
