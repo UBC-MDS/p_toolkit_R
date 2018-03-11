@@ -90,14 +90,4 @@ p_adjust <- function(data, pv_index, method, alpha=0.05){
 
 }
 
-#p_adjust(data = data.frame(test = c("test 1"),p=c(0.07)),pv_index ="p", method = "bonferroni")
 
-#p_adjust(data=c(.07,.14), method="bh")
-#p_adjust(data = c(0.07,0.2), method = "BH")
-#testA <- data.frame(test = c("test 1"),p=c(0.07))
-#testA
-#p_adjust(data =testA ,pv_index ="p", method = "bh")
-
-#toy_df <- data.frame(test= c("test1", "test2", "moretest", "test 4"), p = c(.05,.5,.0001, .00000001))
-
-#p_adjust(toy_df,2, method = "bh")

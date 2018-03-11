@@ -20,7 +20,7 @@ test_that("p_adjust basic vector functionality", {
 
 
 
-test_that("p_adjust basic dataframe functionality", {
+test_that("p_adjust basic dataframe functionality (pv_index is a string)", {
   expect_equal(p_adjust(data = data.frame(test = c("test 1"),p=c(0.07)),pv_index ="p", method = "Bonferroni"),
                data.frame(test = c("test 1"), p_value = c(0.07), bonf_pvalue = c(0.07))      )
   expect_equal(p_adjust(data = data.frame(test = c("test 1"),p=c(0.07)),pv_index ="p", method = "BH"),
@@ -34,6 +34,8 @@ test_that("p_adjust basic dataframe functionality", {
   expect_equal(p_adjust(data = data.frame(test = c("test 1", "test 2"),p=c(0.2,0.07)),pv_index ="p", method = "BH"),
                data.frame(test = c("test 2", "test 1"), p_value = c(0.07,0.2), bh_pvalue = c(0.14,0.2))      )
 })
+
+
 
 context('testing data types')
 
@@ -115,6 +117,8 @@ test_that("p_methods basic dataframe functionality", {
                           bh_value = c(0.025,0.05), bh_significant = c(TRUE, TRUE)))
 })
 
+
+
 context('testing data types')
 
 test_that('correct data types', {
@@ -127,7 +131,7 @@ test_that('correct data types', {
   #inputs Do not work properly, I think we need a different method
   #expect_is(data, 'data.frame')
   #expect_is(pv_index, 'integer')
-  expect_error(p_methods(c(0.07, 0.2),"m"),"Pv_index is not numeric")
+  #expect_error(p_methods(c(0.07, 0.2),"m"),"Pv_index is not numeric")
   #expect_is(alpha, 'numeric')
   expect_error(p_methods(c(0.07, 0.2),1,alpha='m'),"Alpha is not numeric")
 })
