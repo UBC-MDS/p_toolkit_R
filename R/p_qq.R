@@ -56,6 +56,3 @@ p_qq <- function(data, pv_index){
     theme(plot.title = element_text(hjust = 0.5))
   return(plot)
 }
-
-
-
