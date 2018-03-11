@@ -52,18 +52,29 @@ We can use the p-values alone, or an adjustment method such as the Bonferroni  o
 This package aims to combine these methods in a simple-to-use format, which works by outputting dataframes, which contain results from several adjustment methods.
 
 ### Package Functions
-The following table gives a high level overview of the proposed functions in `p_toolkit`.
 
-| Functions    | Description                                         | Inputs                           | Outputs                                               |
-|--------------|-----------------------------------------------------|----------------------------------|-------------------------------------------------------|
-| `p_methods`  | Bonferroni, BH summary of adjusted pvals            | df/vector, p-value column, alpha | DATAFRAME<br> variable, raw pval, adjusted pvals      |
-| `p_adjust`   | Correction method specific output                   | df/vector, p-value column, alpha | raw pval, adjusted pval, Significance, Critical value |
-| `p_plot`     | Summary plot comparing methods - sample from DSCI553 Lecture 2: <br> `par(mfrow=c(1,2))`<br>`plot(1:10, sort(p.ex1), ylim=c(0,1),`<br > `xlab="k",<br>'ylab=expression(p[(k)]))` <br> `abline(h=.05/10, col="blue"); abline(c(0,.05/10),col="red")`<br>`plot(1:10, sort(p.ex1), xlim=c(0,4.1),ylim=c(0,.04),`<br>`xlab="k", ylab=expression(p[(k)]))`<br>`abline(h=.05/10, col="blue"); abline(c(0,.05/10),col="red")`                      | `p_methods` dataframe                  | ![](doc/pictures/sample-p_plot.PNG)![](doc/pictures/sample-p_plot-zoom.PNG) |
-| `p_qq`       | qq plot labeling per method the significant pvals   |      `p_methods` dataframe                                     |  ![](doc/pictures/sample-p_qq.PNG)![](doc/pictures/sample-p_qq-zoom.PNG) |
-| *`p_matrix`  | Confusion matrix with FDR (reverse of type I error) |         _TBD_                              |                             _TBD_                          |
-| *`p_summary` | Summary listing  FDR rate                           |        _TBD_                               |                                            _TBD_                |
 
- \* Bonus functions for data with labels
+#### Example
+```{R}
+###set up a dataframe
+df <- data.frame(test= c("test 1", "test 2", "test 3", "test 4"),
+                 p = c(.05,.5,.0001, .0001))
+
+##p_adjust with the BH correction
+ptoolkit::p_adjust(data = df, pv_index = "p", method = "bh")
+
+###p_adjust with the Bonferroni correction
+ptoolkit::p_adjust(data = df, pv_index = "p", method = "bonf")
+
+##p_methods
+ptoolkit::p_methods(data = df, pv_index = "p", alpha = 0.05)
+
+###p_qq
+ptoolkit::p_qq(data = df, pv_index = "p")
+
+##p_plot
+ptoolkit::p_plot(data = df, pv_index = "p")
+```
 
 
 ## Install
@@ -126,7 +137,7 @@ p_adjust(data, pv_index=0, method='bh', alpha=0.05)
 A plot displaying the p-values and both Bonferroni and Benjamini-Hochberg method significance level lines:
 
 ```
-p_plot(data)
+p_plot(data, pv_index)
 ```
 A simple QQ-plot of the p-values:
 ```
