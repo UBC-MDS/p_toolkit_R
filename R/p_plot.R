@@ -11,10 +11,9 @@
 #'
 #' @param data
 #'
-#' @return
+#' @return ggplot2
 #' @export
 #'
-#' @examples
 
 p_plot <- function(data, pv_index,alpha = 0.05){
   require(dplyr)

@@ -2,29 +2,33 @@
 % Please edit documentation in R/p_adjust.R
 \name{p_adjust}
 \alias{p_adjust}
-\title{P-value Corrections}
-\description{This function executes an specific p-value adjustment method.}
-\arguments{
-
-  \item{data (dataframe)} {dataframe containing at least a column of p-values to be adjusted}
-  \item{pv_index (int)} {if the input is a dataframe, col refers to the column name of the dataframe that has the p-values.}
-  \item{method (string)} {method used for the adjustment ("bh" or "bonf")}
-  \item{alpha (numeric)} {significance level for both methods}
-           }
-\usage{p_adjust(data, pv_index, method, alpha=0.05)}
-
-\examples{
-Adapted from https://matthew-brett.github.io/teaching/fdr.html
-nSims <- 100 #number of simulated experiments
-p <-numeric(nSims) #set up empty container for all simulated p-values
-
-for(i in 1:nSims){ #for each simulated experiment
-  x<-rnorm(n = 100, mean = 10, sd = 8) #produce 100 simulated participants
-  #with mean=10 and SD=8
-  y<-rnorm(n = 100, mean = 30, sd = 5) #produce 100 simulated participants
-  #with mean=30 and SD=5
-  z<-t.test(x,y) #perform the t-test
-  p[i]<-z$p.value #get the p-value and store it
+\title{P-value Adjustments
+This function executes an specific p-value adjustment method.
+#'
+Returns:
+  - data frame: data frame with the following columns:
+raw_p_value (numeric): original p-values.
+      adjusted_p_value (numeric): p-values after the adjustment.
+      signficant (logical): boolean values determining if each p-value is significant.
+      critical_value (numeric): it's the calculated critical value to compare with the cut-off.}
+\usage{
+p_adjust(data, pv_index, method, alpha = 0.05)
 }
-p_adjust(p ,1, "bonf",0.05)
+\arguments{
+\item{data}{(dataframe): dataframe containing at least a column of p-values to be adjusted}
+
+\item{pv_index}{(int): if the input is a dataframe, col refers to the column name of the dataframe that has the p-values.}
+
+\item{method}{(numeric): significance level for both methods.}
+
+\item{alpha}{(string): method used for the adjustment ("bh" or "bonf")}
+}
+\value{
+data.frame
+}
+\description{
+Args:
+}
+\examples{
+
 }
