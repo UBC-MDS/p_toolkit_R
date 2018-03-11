@@ -141,11 +141,10 @@ test_that("p_qq outputs a ggplot object", {
   expect_true(is.ggplot(p))
 })
 
-test_that("p_qq axis labels and title", {
+test_that("p_qq title", {
   df <- data.frame(test = c("test 1", "test2"),p=c(0.07,.1))
-   p <- p_qq(df, "p")
-  expect_identical(p$labels$y, "Observed -log10(p)")
-  expect_identical(p$labels$x, "Expected -log10(p)")
+  p <- p_qq(df, "p")
+  expect_identical(p$labels$title, "QQ")
 })
 
 test_that("p_qq uses geom_point and geom_abline", {
@@ -156,7 +155,7 @@ test_that("p_qq uses geom_point and geom_abline", {
 
   geoms <- sapply(p$layers, function(x) class(x$geom)[1])
   expect_true("GeomPoint" %in% geoms)
-  expect_true("GeomAbline" %in% geoms)
+  expect_true("GeomPath" %in% geoms)
   expect_true(length(geoms)==2)
 
 })
@@ -164,9 +163,8 @@ test_that("p_qq uses geom_point and geom_abline", {
 test_that("p_qq plot mapping", {
   df <- data.frame(test = c("test 1"),p=c(0.07))
   p <- p_qq(df, "p")
-  expect_true(is.ggplot(p))
-  expect_identical(p$mapping$y, "theoretical_pvalues")
-  expect_identical(p$mapping$x, "real_pvalues")
+  expect_identical(p$labels$x, "log_exp")
+  expect_identical(p$labels$y, "log_transf")
 })
 
 ###p_plot functionality tests
@@ -177,11 +175,10 @@ test_that("p_plot outputs a ggplot object", {
   expect_true(is.ggplot(p))
 })
 
-test_that("p_plot axis labels and title", {
+test_that("p_plot title", {
   df <- data.frame(test = c("test 1"),p=c(0.07))
   p <- p_plot(df, "p")
-  expect_identical(p$labels$y, "p(k)")
-  expect_identical(p$labels$x, "k")
+  expect_identical(p$labels$title, "Bonferroni vs BH")
 })
 
 test_that("p_plot uses geom_point and geom_abline", {
@@ -195,13 +192,11 @@ test_that("p_plot uses geom_point and geom_abline", {
 })
 
 test_that("p_plot plot mapping", {
-  df <- df <- data.frame(test = c("test 1"),p=c(0.07))
-  p <- p_qq(df, "p")
+  df <- data.frame(test = c("test 1"),p=c(0.07))
+  p <- p_plot(df, "p")
   expect_true(is.ggplot(p))
-  expect_identical(p$mapping$y, "pvalue")
-  expect_identical(p$mapping$x, "k")
+  expect_identical(p$labels$y, "p_value")
+  expect_identical(p$labels$x, "rank")
 })
 
 #=======
-
-
