@@ -82,15 +82,15 @@ test_that('correct data types', {
 
 ###p_methods basic functionality
 test_that("p_methods basic vector functionality", {
-  expect_equal(p_methods(data = c(0.07), alpha = 0.05),
+  expect_equal(p_methods(data = c(0.07), 1, alpha = 0.05),
                data.frame(p_value = c(0.07),
                           bonf_value = c(0.05),bonf_significant =c(FALSE),
                           bh_value = c(0.05), bh_significant = FALSE))
-  expect_equal(p_methods(data = c(0.01), alpha = 0.05),
+  expect_equal(p_methods(data = c(0.01), 1, alpha = 0.05),
                data.frame(p_value = c(0.01),
                           bonf_value = c(0.05),bonf_significant =c(TRUE),
                           bh_value = c(0.05), bh_significant = c(TRUE)))
-  expect_equal(p_methods(data = c(0.01, 0.03), alpha = 0.05),
+  expect_equal(p_methods(data = c(0.01, 0.03), 1, alpha = 0.05),
                data.frame(p_value = c(0.01, 0.03),
                           bonf_value = c(0.025,0.025),bonf_significant =c(TRUE, FALSE),
                           bh_value = c(0.025,0.05), bh_significant = c(TRUE, TRUE)))
@@ -119,15 +119,17 @@ context('testing data types')
 
 test_that('correct data types', {
   #outputs
-  expect_is(p_methods(c(0.07, 0.2)),'data.frame')
-  expect_is(p_methods(c(0.07, 0.2))$bh_value, 'numeric')
-  expect_is(p_methods(c(0.07, 0.2))$bonf_value, 'numeric')
-  expect_is(p_methods(c(0.07, 0.2))$bonf_significant, 'logical')
-  expect_is(p_methods(c(0.07, 0.2))$bh_significant, 'logical')
+  expect_is(p_methods(c(0.07, 0.2),1),'data.frame')
+  expect_is(p_methods(c(0.07, 0.2),1)$bh_value, 'numeric')
+  expect_is(p_methods(c(0.07, 0.2),1)$bonf_value, 'numeric')
+  expect_is(p_methods(c(0.07, 0.2),1)$bonf_significant, 'logical')
+  expect_is(p_methods(c(0.07, 0.2),1)$bh_significant, 'logical')
   #inputs Do not work properly, I think we need a different method
   #expect_is(data, 'data.frame')
   #expect_is(pv_index, 'integer')
-  expect_is(alpha, 'numeric')
+  expect_error(p_methods(c(0.07, 0.2),"m"),"Pv_index is not numeric")
+  #expect_is(alpha, 'numeric')
+  expect_error(p_methods(c(0.07, 0.2),1,alpha='m'),"Alpha is not numeric")
 })
 
 ###p_qq functionality tests
@@ -141,11 +143,10 @@ test_that("p_qq outputs a ggplot object", {
   expect_true(is.ggplot(p))
 })
 
-test_that("p_qq axis labels and title", {
+test_that("p_qq title", {
   df <- data.frame(test = c("test 1", "test2"),p=c(0.07,.1))
-   p <- p_qq(df, "p")
-  expect_identical(p$labels$y, "Observed -log10(p)")
-  expect_identical(p$labels$x, "Expected -log10(p)")
+  p <- p_qq(df, "p")
+  expect_identical(p$labels$title, "QQ")
 })
 
 test_that("p_qq uses geom_point and geom_abline", {
@@ -156,7 +157,7 @@ test_that("p_qq uses geom_point and geom_abline", {
 
   geoms <- sapply(p$layers, function(x) class(x$geom)[1])
   expect_true("GeomPoint" %in% geoms)
-  expect_true("GeomAbline" %in% geoms)
+  expect_true("GeomPath" %in% geoms)
   expect_true(length(geoms)==2)
 
 })
@@ -164,9 +165,8 @@ test_that("p_qq uses geom_point and geom_abline", {
 test_that("p_qq plot mapping", {
   df <- data.frame(test = c("test 1"),p=c(0.07))
   p <- p_qq(df, "p")
-  expect_true(is.ggplot(p))
-  expect_identical(p$mapping$y, "theoretical_pvalues")
-  expect_identical(p$mapping$x, "real_pvalues")
+  expect_identical(p$labels$x, "log_exp")
+  expect_identical(p$labels$y, "log_transf")
 })
 
 ###p_plot functionality tests
@@ -177,11 +177,10 @@ test_that("p_plot outputs a ggplot object", {
   expect_true(is.ggplot(p))
 })
 
-test_that("p_plot axis labels and title", {
+test_that("p_plot title", {
   df <- data.frame(test = c("test 1"),p=c(0.07))
   p <- p_plot(df, "p")
-  expect_identical(p$labels$y, "p(k)")
-  expect_identical(p$labels$x, "k")
+  expect_identical(p$labels$title, "Bonferroni vs BH")
 })
 
 test_that("p_plot uses geom_point and geom_abline", {
@@ -195,13 +194,11 @@ test_that("p_plot uses geom_point and geom_abline", {
 })
 
 test_that("p_plot plot mapping", {
-  df <- df <- data.frame(test = c("test 1"),p=c(0.07))
-  p <- p_qq(df, "p")
+  df <- data.frame(test = c("test 1"),p=c(0.07))
+  p <- p_plot(df, "p")
   expect_true(is.ggplot(p))
-  expect_identical(p$mapping$y, "pvalue")
-  expect_identical(p$mapping$x, "k")
+  expect_identical(p$labels$y, "p_value")
+  expect_identical(p$labels$x, "rank")
 })
 
 #=======
-
-

@@ -29,6 +29,19 @@
 
 p_methods <- function(data, pv_index, alpha=0.05){
   require(dplyr)
+
+  #Type checking
+  if (is.null(data)){
+    stop("Data is missing")
+  }else if(is.null(pv_index)){
+    stop("Column containing the p value is missing")
+  }else if(!is.numeric(pv_index)){
+    stop("Pv_index is not numeric")
+  }else if(!is.numeric(alpha)){
+    stop("Alpha is not numeric")
+  }
+
+
   if(is.data.frame(data)){
     ###change the pv_index column to p_value, in a dataframe
     df <- select(data, p_value = c(pv_index))
