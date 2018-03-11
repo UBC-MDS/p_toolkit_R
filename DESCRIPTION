@@ -1,13 +1,17 @@
 Package: ptoolkit
 Title: A toolkit for adjusting and visualizing p-values coming from multiple tests
 Version: 0.0.0.9000
-Authors@R: person("Amy", "Goldlist", email = "amygoldlist@gmail.com", role = c("aut", "cre")),
-person("Esteban", "Angel", email = "example@example.com", role = c("aut", "cre")),
-person("Vero", "Mulholland", email = "example@example.com", role = c("aut", "cre"))
+Authors@R: c( person("Amy", "Goldlist", email = "amygoldlist@gmail.com", role = c("aut")),
+  person("Esteban", "Angel", email = "example@example.com", role = c("aut")),
+  person("Vero", "Mulholland", email = "example@example.com", role = c("aut", "cre")))
 Description: p_toolkit is a package designed to help adjust and visualize p-values when using multiple comparisons.
 Depends: R (>= 3.4.3)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: dplyr, ggplot2
-Suggests: testthat
+Suggests: testthat,
+    knitr,
+    rmarkdown
+RoxygenNote: 6.0.1
+VignetteBuilder: knitr
