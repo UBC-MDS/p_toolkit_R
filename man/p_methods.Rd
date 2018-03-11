@@ -9,10 +9,14 @@ level for Bonferroni and the critical value for BH}
 p_methods(data, pv_index, alpha = 0.05)
 }
 \arguments{
-\item{alpha}{}
+\item{data}{(data.frame or vector)}
+
+\item{pv_index}{(index)}
+
+\item{alpha}{(numeric)}
 }
 \value{
-df
+data.frame
 }
 \description{
 Args:

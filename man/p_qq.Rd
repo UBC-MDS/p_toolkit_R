@@ -10,7 +10,12 @@ are the ones that are significant.}
 p_qq(data, pv_index)
 }
 \arguments{
+\item{data}{(data.frame or vector)}
+
 \item{pv_index}{}
+}
+\value{
+gplot2
 }
 \description{
 Args:

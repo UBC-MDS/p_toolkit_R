@@ -12,13 +12,12 @@
 
 #' Title
 #'
-#' @param data
+#' @param data (data.frame or vector)
 #' @param pv_index
 #'
-#' @return
+#' @return gplot2
 #' @export
 #'
-#' @examples
 
 p_qq <- function(data, pv_index){
   require(dplyr)

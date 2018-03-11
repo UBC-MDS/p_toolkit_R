@@ -21,11 +21,13 @@
 #'
 #' Requirements:  Dplyr
 #'
-#' @param data
-#' @param pv_index
-#' @param alpha
+#' @param data (data.frame or vector)
+#' @param pv_index (index)
+#' @param alpha (numeric)
 #'
-#' @return df
+#' @return data.frame
+#' @export
+#'
 
 p_methods <- function(data, pv_index, alpha=0.05){
   require(dplyr)
