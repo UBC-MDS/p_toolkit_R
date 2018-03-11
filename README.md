@@ -68,9 +68,70 @@ The following table gives a high level overview of the proposed functions in `p_
 
 ## Install
 
-
+From the R console, enter these two lines:
+```
+devtools::install_github("UBC-MDS/ptoolkit")
+library(ptoolkit)
+```
+Navigate to the *help* panel or follow the **How to Use** section for step-by-step instructions.
 
 ## How To Use
+
+All the commands in this section should be typed in the IDE console. `data` refers to either a dataframe or other array/vector format and `pv_index` is the column number if using a dataframe.
+
+### Generating Sample P-values
+Here are some lines for simulating a toy set of p-values adapted from [Research Utopia](https://researchutopia.wordpress.com/2013/11/10/understanding-p-values-via-simulations/):
+
+```
+# Choose how many simulations to perform
+nSims <- 100000
+p <-numeric(nSims) # initialize empty container for simulated p-values
+
+# Simulate an experiment
+for(i in 1:nSims){
+  #produce 100 simulated participants
+  x<-rnorm(n = 100, mean = 110, sd = 15)
+  y<-rnorm(n = 100, mean = 100, sd = 15)
+
+ z<-t.test(x,y) #perform the t-test
+ p[i]<-z$p.value #get the p-value and store it
+}
+```
+
+### Generating a Summary
+
+Now let's take a look at the summary table with both Bonferroni and BH correction methods applied:
+
+```
+p_methods(data, pv_index=0, alpha = 0.05)
+```
+
+### Bonferroni `Bonf` Correction
+
+For those only interested in getting adjusted p-values rather than seeing the whole summary, type in either 'bonf' or 'bonferroni':
+
+```
+p_adjust(data, pv_index=0, method='bonf', alpha=0.05)
+```
+
+### Benjamini-Hochberg `BH` Correction
+
+And now for the BH correction, type in either 'bh' or 'fdr':
+
+```
+p_adjust(data, pv_index=0, method='bh', alpha=0.05)
+```
+### Plot the results
+
+A plot displaying the p-values and both Bonferroni and Benjamini-Hochberg method significance level lines:
+
+```
+p_plot(data)
+```
+A simple QQ-plot of the p-values:
+```
+p_qq(data,pv_index)
+```
 
 
 
