@@ -13,11 +13,11 @@ p_plot(data, pv_index, alpha = 0.05)
 
 \item{pv_index}{(int) if the input is a dataframe, col refers to the column name of the dataframe that has the p-values.
 
-\item{alpha}{(string) method used for the adjustment ("bh" and "bonf")}
+\item{alpha}{ significance level for both methods}
 }
 \description{
 Args:
-  - ad_object: the dataframe output from the p_methods function.
+  - Returns: the dataframe output from the p_methods function.
 }
 \details{
 Returns:
