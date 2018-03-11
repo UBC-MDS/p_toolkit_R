@@ -2,13 +2,18 @@
 % Please edit documentation in R/p_plot.R
 \name{p_plot}
 \alias{p_plot}
-\title{This function plots all the p-values in ascending order and compares them with two lines, one representing
-the BH cutoff point and another one the Bonferroni cutoff.}
+\title{P-value Summary Plot}
 \usage{
+  This function plots all the p-values in ascending order and compares them with two lines, one representing
+the BH cutoff point and another one the Bonferroni cutoff.
 p_plot(data, pv_index, alpha = 0.05)
 }
 \arguments{
-\item{data}{}
+\item{data}{ dataframe containing at least a column of p-values to be adjusted}
+
+\item{pv_index}{(int) if the input is a dataframe, col refers to the column name of the dataframe that has the p-values.
+
+\item{alpha}{(string) method used for the adjustment ("bh" and "bonf")}
 }
 \description{
 Args:
@@ -17,5 +22,5 @@ Args:
 \details{
 Returns:
   - plot: a ggplot with the p-values and both cut-off lines.
-Title
+
 }
