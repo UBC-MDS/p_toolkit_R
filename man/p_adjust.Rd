@@ -13,9 +13,9 @@ p_adjust(data, pv_index, method, alpha = 0.05)
 
 \item{pv_index}{(int): if the input is a dataframe, col refers to the column name of the dataframe that has the p-values.}
 
-\item{method}{(numeric): significance level for both methods.}
+\item{method}{(string): method used for the adjustment ("bh" or "bonf")}
 
-\item{alpha}{(string): method used for the adjustment ("bh" or "bonf")}
+\item{alpha}{ significance level for both methods}
 }
 \description{
 P-value Adjustments
