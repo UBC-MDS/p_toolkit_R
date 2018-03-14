@@ -35,6 +35,11 @@ p_qq <- function(data, pv_index){
     data <- data.frame(p_value = data)
   }
 
+  ##Throw a warning if we have non valid probabilities
+  if ((min(data$p_value)<0) | (max(data$p_value)>1)){
+    warning("p-values should be between 0 and 1")
+  }
+
   m <- length(data$p_value)
   #alpha <- data$value[1]
 
