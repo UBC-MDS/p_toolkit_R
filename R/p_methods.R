@@ -29,7 +29,7 @@
 #' @export
 #'
 
-p_methods <- function(data, pv_index, alpha=0.05){
+p_methods <- function(data, pv_index=1, alpha=0.05){
   require(dplyr)
 
   #Type checking
@@ -55,6 +55,12 @@ p_methods <- function(data, pv_index, alpha=0.05){
     ###if it's a vector, make it a dataframe of one column
     df <- data.frame(p_value = data)
   }
+
+  ##Throw a warning if we have non valid probabilities
+  if ((min(df$p_value)<0) | (max(df$p_value)>1)){
+    warning("p-values should be between 0 and 1")
+  }
+
   ### set the size of the data
   m <-  nrow(df)
 

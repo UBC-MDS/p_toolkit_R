@@ -50,6 +50,11 @@ p_adjust <- function(data, pv_index, method, alpha=0.05){
         stop("Please enter a data frame, matrix or vector of numeric p-values.")
     }
 
+  ##Throw a warning if we have non valid probabilities
+  if ((min(data$p_value)<0) | (max(data$p_value)>1)){
+    warning("p-values should be between 0 and 1")
+  }
+
   ### set the size of the data
   m = nrow(data)
 

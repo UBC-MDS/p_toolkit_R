@@ -31,6 +31,10 @@ p_plot <- function(data, pv_index,alpha = 0.05){
     data <- data.frame(p_value = data)
   }
 
+  ##Throw a warning if we have non valid probabilities
+  if ((min(data$p_value)<0) | (max(data$p_value)>1)){
+    warning("p-values should be between 0 and 1")
+  }
 
   data <- data %>%
     arrange(p_value) %>%
