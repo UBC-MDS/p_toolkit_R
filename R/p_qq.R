@@ -24,11 +24,12 @@ p_qq <- function(data, pv_index){
   require(ggplot2)
 
   if(is.data.frame(data)){
+    if(pv_index != "p_value"){
     ###change the pv_index column to p_value, in a dataframe
     df <- select(data, p_value = c(pv_index))
     data <- cbind(data, df)
     data <- select(data,-one_of(pv_index))
-  }
+  }}
 
   else {
     ###if it's a vector, make it a dataframe of one column

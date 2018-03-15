@@ -21,10 +21,11 @@ p_plot <- function(data, pv_index,alpha = 0.05){
 
   if(is.data.frame(data)){
     ###change the pv_index column to p_value, in a dataframe
+    if(pv_index != "p_value"){
     df <- select(data, p_value = c(pv_index))
     data <- cbind(data, df)
     data <- select(data,-one_of(pv_index))
-  }
+  }}
 
   else {
     ###if it's a vector, make it a dataframe of one column
@@ -34,6 +35,10 @@ p_plot <- function(data, pv_index,alpha = 0.05){
   ##Throw a warning if we have non valid probabilities
   if ((min(data$p_value)<0) | (max(data$p_value)>1)){
     warning("p-values should be between 0 and 1")
+  }
+  ##Throw a warning if alpha is a non valid probability
+  if ((alpha<=0) | (alpha>=1)){
+    warning("alpha should be between 0 and 1")
   }
 
   data <- data %>%
