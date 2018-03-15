@@ -18,6 +18,12 @@ test_that("p_adjust basic vector functionality", {
                data.frame(p_value = c(0.07, 0.2), bonf_pvalue = c(0.14,0.4)) )
 })
 
+###p_adjust invalid  p_value
+test_that("p_adjust with an invalid probability", {
+  expect_warning(p_adjust(data = c(0.01, 3), 1), "p-values should be between 0 and 1")
+  expect_warning(p_adjust(data = c(0.01, -.02), 1), "p-values should be between 0 and 1")
+})
+
 
 
 test_that("p_adjust basic dataframe functionality (pv_index is a string)", {
@@ -32,6 +38,21 @@ test_that("p_adjust basic dataframe functionality (pv_index is a string)", {
   expect_equal(p_adjust(data = data.frame(test = c("test 1", "test 2"),p=c(0.2,0.07)),pv_index ="p", method = "Bonferroni"),
                data.frame(test = c("test 2", "test 1"), p_value = c(0.07,0.2), bonf_pvalue = c(0.14,0.4))      )
   expect_equal(p_adjust(data = data.frame(test = c("test 1", "test 2"),p=c(0.2,0.07)),pv_index ="p", method = "BH"),
+               data.frame(test = c("test 2", "test 1"), p_value = c(0.07,0.2), bh_pvalue = c(0.14,0.2))      )
+})
+
+test_that("p_adjust basic dataframe functionality (pv_index = 'p_value')", {
+  expect_equal(p_adjust(data = data.frame(test = c("test 1"),p_value=c(0.07)),pv_index ="p_value", method = "Bonferroni"),
+               data.frame(test = c("test 1"), p_value = c(0.07), bonf_pvalue = c(0.07))      )
+  expect_equal(p_adjust(data = data.frame(test = c("test 1"),p_value=c(0.07)),pv_index ="p_value", method = "BH"),
+               data.frame(test = c("test 1"), p_value = c(0.07), bh_pvalue = c(0.07))      )
+  expect_equal(p_adjust(data = data.frame(test = c("test 1", "test 2"),p_value=c(0.07,0.2)),pv_index ="p_value", method = "Bonferroni"),
+               data.frame(test = c("test 1", "test 2"), p_value = c(0.07,0.2), bonf_pvalue = c(0.14,0.4))      )
+  expect_equal(p_adjust(data = data.frame(test = c("test 1", "test 2"),p_value=c(0.07,0.2)),pv_index ="p_value", method = "BH"),
+               data.frame(test = c("test 1", "test 2"), p_value = c(0.07,0.2), bh_pvalue = c(0.14,0.2))      )
+  expect_equal(p_adjust(data = data.frame(test = c("test 1", "test 2"),p_value=c(0.2,0.07)),pv_index ="p_value", method = "Bonferroni"),
+               data.frame(test = c("test 2", "test 1"), p_value = c(0.07,0.2), bonf_pvalue = c(0.14,0.4))      )
+  expect_equal(p_adjust(data = data.frame(test = c("test 1", "test 2"),p_value=c(0.2,0.07)),pv_index ="p_value", method = "BH"),
                data.frame(test = c("test 2", "test 1"), p_value = c(0.07,0.2), bh_pvalue = c(0.14,0.2))      )
 })
 
@@ -98,6 +119,19 @@ test_that("p_methods basic vector functionality", {
                           bh_value = c(0.025,0.05), bh_significant = c(TRUE, TRUE)))
 })
 
+###p_methods invalid alpha or p_value
+test_that("p_methods with an invalid probability", {
+  expect_warning(p_methods(data = c(0.01, 3), 1, alpha = 0.05), "p-values should be between 0 and 1")
+  expect_warning(p_methods(data = c(0.01, -.02), 1, alpha = 0.05), "p-values should be between 0 and 1")
+})
+
+test_that("p_methods with an invalid alpha",{
+  expect_warning(p_methods(data = c(0.01, .07), 1, alpha = 3), "alpha should be between 0 and 1")
+  expect_warning(p_methods(data = c(0.01, .02), 1, alpha = -.04), "alpha should be between 0 and 1")
+})
+
+
+
 
 test_that("p_methods basic dataframe functionality", {
   expect_equal(p_methods(data = data.frame(test = c("test 1"),p=c(0.07)),pv_index ="p", alpha = 0.05),
@@ -111,6 +145,25 @@ test_that("p_methods basic dataframe functionality", {
                           bonf_value = c(0.05),bonf_significant =c(TRUE),
                           bh_value = c(0.05), bh_significant = c(TRUE)))
   expect_equal(p_methods(data = data.frame(test = c("test 1", "test 2"),p=c(0.01,0.03)),pv_index ="p", alpha = 0.05),
+               data.frame(test = c("test 1", "test 2"),
+                          p_value = c(0.01, 0.03),
+                          bonf_value = c(0.025, 0.025),bonf_significant =c(TRUE, FALSE),
+                          bh_value = c(0.025,0.05), bh_significant = c(TRUE, TRUE)))
+})
+
+
+test_that("p_methods basic dataframe functionality, P_index = 'p_value", {
+  expect_equal(p_methods(data = data.frame(test = c("test 1"),p_value=c(0.07)),pv_index ="p_value", alpha = 0.05),
+               data.frame(test = c("test 1"),
+                          p_value = c(0.07),
+                          bonf_value = c(0.05),bonf_significant =c(FALSE),
+                          bh_value = c(0.05), bh_significant = c(FALSE)))
+  expect_equal(p_methods(data = data.frame(test = c("test 1"),p_value=c(0.01)),pv_index ="p_value", alpha = 0.05),
+               data.frame(test = c("test 1"),
+                          p_value = c(0.01),
+                          bonf_value = c(0.05),bonf_significant =c(TRUE),
+                          bh_value = c(0.05), bh_significant = c(TRUE)))
+  expect_equal(p_methods(data = data.frame(test = c("test 1", "test 2"),p_value=c(0.01,0.03)),pv_index ="p_value", alpha = 0.05),
                data.frame(test = c("test 1", "test 2"),
                           p_value = c(0.01, 0.03),
                           bonf_value = c(0.025, 0.025),bonf_significant =c(TRUE, FALSE),
@@ -166,9 +219,24 @@ test_that("p_qq uses geom_point and geom_abline", {
 
 })
 
+###p_qq invalid  p_value
+test_that("p_methods with an invalid probability", {
+  expect_warning(p_qq(data = c(0.01, 3), 1), "p-values should be between 0 and 1")
+  expect_warning(p_qq(data = c(0.01, -.02), 1), "p-values should be between 0 and 1")
+})
+
+
+
 test_that("p_qq plot mapping", {
   df <- data.frame(test = c("test 1"),p=c(0.07))
   p <- p_qq(df, "p")
+  expect_identical(p$labels$x, "log_exp")
+  expect_identical(p$labels$y, "log_transf")
+})
+
+test_that("p_qq plot mapping, pv_index = 'p_value'", {
+  df <- data.frame(test = c("test 1"),p_value=c(0.07))
+  p <- p_qq(df, "p_value")
   expect_identical(p$labels$x, "log_exp")
   expect_identical(p$labels$y, "log_transf")
 })
@@ -178,6 +246,12 @@ test_that("p_qq plot mapping", {
 test_that("p_plot outputs a ggplot object", {
   df <- data.frame(test = c("test 1"),p=c(0.07))
   p <- p_plot(df,"p")
+  expect_true(is.ggplot(p))
+})
+
+test_that("p_plot outputs a ggplot object, pv_index = 'p_value'", {
+  df <- data.frame(test = c("test 1"),p_value=c(0.07))
+  p <- p_plot(df,"p_value")
   expect_true(is.ggplot(p))
 })
 
@@ -204,5 +278,18 @@ test_that("p_plot plot mapping", {
   expect_identical(p$labels$y, "p_value")
   expect_identical(p$labels$x, "rank")
 })
+
+###p_plot invalid alpha or p_value
+test_that("p_plots with an invalid probability", {
+  expect_warning(p_plot(data = c(0.01, 3), 1, alpha = 0.05), "p-values should be between 0 and 1")
+  expect_warning(p_plot(data = c(0.01, -.02), 1, alpha = 0.05), "p-values should be between 0 and 1")
+})
+
+test_that("p_plot with an invalid alpha",{
+  expect_warning(p_plot(data = c(0.01, .07), 1, alpha = 3), "alpha should be between 0 and 1")
+  expect_warning(p_plot(data = c(0.01, .02), 1, alpha = -.04), "alpha should be between 0 and 1")
+})
+
+
 
 #=======

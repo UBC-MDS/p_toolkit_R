@@ -21,17 +21,18 @@
 #' @examples
 #'
 
-p_adjust <- function(data, pv_index, method, alpha=0.05){
+p_adjust <- function(data, pv_index, method= "bh", alpha=0.05){
   require(dplyr)
   if(is.data.frame(data)){
     ## check if all p-values are numeric
     #if(sapply(data[pv_index], is.numeric)){
       #data <- select(data, p_value = c(pv_index))
       #return(data)
+    if(pv_index != "p_value"){
       df <- select(data, p_value = c(pv_index))
       data <- cbind(data, df)
       data <- select(data,-one_of(pv_index))
-
+    }
     #}else{
       ## error for non-numeric data frame column
      # stop("Please ensure you have specified the column index of numeric p-values.")
