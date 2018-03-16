@@ -241,6 +241,11 @@ test_that("p_qq plot mapping, pv_index = 'p_value'", {
   expect_identical(p$labels$y, "log_transf")
 })
 
+test_that("p_plot outputs a ggplot object when input is vector", {
+  p <- p_qq(c(0.01, .07))
+  expect_true(is.ggplot(p))
+})
+
 ###p_plot functionality tests
 
 test_that("p_plot outputs a ggplot object", {
@@ -290,6 +295,20 @@ test_that("p_plot with an invalid alpha",{
   expect_warning(p_plot(data = c(0.01, .02), 1, alpha = -.04), "alpha should be between 0 and 1")
 })
 
+test_that("p_plot outputs a ggplot object when input is vector", {
+  p <- p_plot(c(0.01, .07),"p")
+  expect_true(is.ggplot(p))
+})
 
+#Integration test: plotting functions using the output of p_methods
 
+test_that("p_plot outputs a ggplot object when input is the output from p_methods", {
+  p <- p_plot(p_methods(c(0.07, 0.2),1),"p_value")
+  expect_true(is.ggplot(p))
+})
+
+test_that("p_qq outputs a ggplot object when input is the output from p_methods", {
+  p <- p_qq(p_methods(c(0.07, 0.2),1),"p_value")
+  expect_true(is.ggplot(p))
+})
 #=======

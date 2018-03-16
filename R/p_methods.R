@@ -100,8 +100,4 @@ p_methods <- function(data, pv_index=1, alpha=0.05){
   return(df)
 }
 
-
-
-
-
-
+p_methods(c(0.07, 0.2),1)
