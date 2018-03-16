@@ -300,5 +300,15 @@ test_that("p_plot outputs a ggplot object when input is vector", {
   expect_true(is.ggplot(p))
 })
 
+#Integration test: plotting functions using the output of p_methods
 
+test_that("p_plot outputs a ggplot object when input is the output from p_methods", {
+  p <- p_plot(p_methods(c(0.07, 0.2),1),"p_value")
+  expect_true(is.ggplot(p))
+})
+
+test_that("p_qq outputs a ggplot object when input is the output from p_methods", {
+  p <- p_qq(p_methods(c(0.07, 0.2),1),"p_value")
+  expect_true(is.ggplot(p))
+})
 #=======

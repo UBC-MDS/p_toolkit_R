@@ -22,10 +22,11 @@ p_plot <- function(data, pv_index,alpha = 0.05){
   if(is.data.frame(data)){
     ###change the pv_index column to p_value, in a dataframe
     if(pv_index != "p_value"){
-    df <- select(data, p_value = c(pv_index))
-    data <- cbind(data, df)
-    data <- select(data,-one_of(pv_index))
-  }}
+      df <- select(data, p_value = c(pv_index))
+      data <- cbind(data, df)
+      data <- select(data,-one_of(pv_index))
+    }
+  }
 
   else {
     ###if it's a vector, make it a dataframe of one column
