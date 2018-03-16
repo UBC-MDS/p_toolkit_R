@@ -35,10 +35,6 @@ p_methods <- function(data, pv_index=1, alpha=0.05){
   #Type checking
   if (is.null(data)){
     stop("Data is missing")
-  }else if(is.null(pv_index)){
-    stop("Column containing the p value is missing")
-  #}else if(!is.numeric(pv_index)){
-   # stop("Pv_index is not numeric")
   }else if(!is.numeric(alpha)){
     stop("Alpha is not numeric")
   }
@@ -99,5 +95,3 @@ p_methods <- function(data, pv_index=1, alpha=0.05){
 
   return(df)
 }
-
-p_methods(c(0.07, 0.2),1)

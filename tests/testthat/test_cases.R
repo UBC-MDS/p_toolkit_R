@@ -181,11 +181,7 @@ test_that('correct data types', {
   expect_is(p_methods(c(0.07, 0.2),1)$bonf_value, 'numeric')
   expect_is(p_methods(c(0.07, 0.2),1)$bonf_significant, 'logical')
   expect_is(p_methods(c(0.07, 0.2),1)$bh_significant, 'logical')
-  #inputs Do not work properly, I think we need a different method
-  #expect_is(data, 'data.frame')
-  #expect_is(pv_index, 'integer')
-  #expect_error(p_methods(c(0.07, 0.2),"m"),"Pv_index is not numeric")
-  #expect_is(alpha, 'numeric')
+  expect_error(p_methods(c()),"Data is missing")
   expect_error(p_methods(c(0.07, 0.2),1,alpha='m'),"Alpha is not numeric")
 })
 
