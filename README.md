@@ -19,10 +19,11 @@ Created by</a></h5>
 <br>
 <h4 align="center">
 
-[![GitHub forks](https://img.shields.io/github/forks/UBC-MDS/p_toolkit_R.svg?style=social)](https://github.com/UBC-MDS/p_toolkit_R/network)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[![GitHub issues](https://img.shields.io/github/issues/UBC-MDS/p_toolkit_R.svg?style=social)](https://github.com/UBC-MDS/p_toolkit_R/issues)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[![GitHub stars](https://img.shields.io/github/stars/UBC-MDS/p_toolkit_R.svg?style=social)](https://github.com/UBC-MDS/p_toolkit_R/stargazers)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[![GitHub license](https://img.shields.io/github/license/UBC-MDS/p_toolkit_R.svg?style=social)](https://github.com/UBC-MDS/p_toolkit_R/blob/master/LICENSE)
+[![Travis](https://img.shields.io/travis/USER/REPO.svg?style=social)](https://github.com/UBC-MDS/ptoolkit)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[![GitHub forks](https://img.shields.io/github/forks/UBC-MDS/p_toolkit_R.svg?style=social)](https://github.com/UBC-MDS/ptoolkit/network)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[![GitHub issues](https://img.shields.io/github/issues/UBC-MDS/p_toolkit_R.svg?style=social)](https://github.com/UBC-MDS/ptoolkit/issues)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[![GitHub stars](https://img.shields.io/github/stars/UBC-MDS/p_toolkit_R.svg?style=social)](https://github.com/UBC-MDS/ptoolkit/stargazers)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[![GitHub license](https://img.shields.io/github/license/UBC-MDS/p_toolkit_R.svg?style=social)](https://github.com/UBC-MDS/ptoolkit/blob/master/LICENSE)
 </a></h4>
 
 
