@@ -290,6 +290,10 @@ test_that("p_plot with an invalid alpha",{
   expect_warning(p_plot(data = c(0.01, .02), 1, alpha = -.04), "alpha should be between 0 and 1")
 })
 
+test_that("p_plot outputs a ggplot object when input is vector", {
+  p <- p_plot(c(0.01, .07),"p")
+  expect_true(is.ggplot(p))
+})
 
 
 #=======
