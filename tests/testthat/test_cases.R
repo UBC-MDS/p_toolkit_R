@@ -241,6 +241,11 @@ test_that("p_qq plot mapping, pv_index = 'p_value'", {
   expect_identical(p$labels$y, "log_transf")
 })
 
+test_that("p_plot outputs a ggplot object when input is vector", {
+  p <- p_qq(c(0.01, .07))
+  expect_true(is.ggplot(p))
+})
+
 ###p_plot functionality tests
 
 test_that("p_plot outputs a ggplot object", {
