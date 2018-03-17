@@ -89,7 +89,6 @@ test_that('correct data types', {
                "Please ensure you input a vector or matrix of numeric p-values.")
   # TEST MATRIX: p-values are input as matrix and output is dataframe
   test_matrix = as.matrix(p)
-  ###this is difficult to show, maybe in next milestone
   #expect_equal(is.data.frame(p_adjust(test_matrix,1, "bh",0.05), TRUE))
 
   # TEST MATRIX OUTPUT
@@ -98,10 +97,18 @@ test_that('correct data types', {
 
   # TEST VECTOR: p-values are input as vector and output is dataframe
   test_vector = c(.1,.4,.2)
-  ##I can;t make this work...   next milestone
   #expect_equal(is.data.frame(p_adjust(test_vector,1, "bh",0.05), TRUE))
 
 })
+
+#### FEEDBACK FROM MILESTONE 2
+test_that('correct method strings', {
+  # ERROR METHOD STRING: input method="bonferonu"
+  err_methodstr = as.data.frame(x=c('str','test'))
+  expect_error(p_adjust(c(0.07,0.2),1, "bonferonu",0.05),
+               "Method should be specified as either 'Bonferroni' or 'BH'.")
+ })
+  
 
 ###p_methods basic functionality
 test_that("p_methods basic vector functionality", {
