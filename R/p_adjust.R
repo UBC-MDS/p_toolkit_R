@@ -87,7 +87,7 @@ p_adjust <- function(data, pv_index, method= "bh", alpha=0.05){
   }else if(method == 'bonf' | method == 'bonferroni'| method == "Bonferroni"){
     return(data %>% select(-bh_pvalue))
   }else{
-    stop("Method should be specified as either 'Bonferroni' or 'BH'."))
+    stop("Method should be specified as either 'Bonferroni' or 'BH'.")
   }
 
 }
