@@ -1,5 +1,5 @@
 library(testthat)
-load_all("ptoolkit")
+devtools::load_all("ptoolkit")
 library(tidyverse)
 
 test_check("ptoolkit")
