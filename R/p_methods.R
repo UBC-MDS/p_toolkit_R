@@ -1,49 +1,43 @@
 #' P-value Corrections
 #'
-#' @usage p_adjust(data, pv_index, method, alpha = 0.05)
+#' @usage p_methods(data, pv_index, alpha = 0.05)
 #'
+#' @param data (dataframe) dataframe containing at least a column of p-values to be adjusted
+#' @param pv_index (numeric) if the input is a dataframe, col refers to the column name of the dataframe that has the p-values
+#' @param alpha (numeric) significance level for both methods
 #'
+#' @description Dataframe: appends to input dataframe both adjusted p-values and significance
+#'                  levels (Bonferroni and BH) in ascending raw p-value order.
+#'      Includes following columns:
+#'      - bonf_value (numeric): Bonferroni adjusted significance level (same for all)
+#'      - bonf_significant (logical): True if significant p-value or False if not
+#'      - bh_value (numeric): Benjamini-Hochberg (BH) critical value
+#'      - BH_significant (logical): True if significant p-value or False if not
 #'
-#'
-#'
-#'
-#'
-#'
-#'
-#'
-#'
-#'
-#'
-#'
-#'
-#'
-#'
-#'
-#'
-#' Args:
-#'     - data (dataframe): dataframe containing at least a column of p-values to be adjusted
-#'     - pv_index (int): original p-value column index from existing input dataframe OR the name of the column in quotes
-#'     - alpha (numeric): significance level as a value between 0 and 1
-#'
-#' Returns:
-#'     Dataframe: appends to input dataframe both adjusted p-values and significance
-#'                   levels (Bonferroni and BH) in ascending raw p-value order.
-#'       Includes following columns:
-#'       - bonf_value (numeric): Bonferroni adjusted significance level (same for all)
-#'       - bonf_significant (logical): True if significant p-value or False if not
-#'       - bh_value (numeric): Benjamini-Hochberg (BH) critical value
-#'       - BH_significant (logical): True if significant p-value or False if not
-#'
+#' @details
 #' Requirements:  Dplyr
 #'
-#' @param data (data.frame or vector)
-#' @param pv_index (index)
-#' @param alpha (numeric)
+#' @details
+#' Requirements:  Dplyr
 #'
+#' @examples
+#' # Simulation by Research Utopia
+#' nSims <- 100 #number of simulated experiments
+#' p <-numeric(nSims) #set up empty container for all simulated p-values
+#' 
+#' for(i in 1:nSims){ #for each simulated experiment
+#'   x<-rnorm(n = 100, mean = 10, sd = 8) #produce 100 simulated participants
+#'   with mean=10 and SD=8
+#'   y<-rnorm(n = 100, mean = 30, sd = 5) #produce 100 simulated participants
+#'   with mean=30 and SD=5
+#'   z<-t.test(x,y) #perform the t-test
+#'   p[i]<-z$p.value #get the p-value and store it
+#' }
+#' # test function
+#' p_method(data = p, pv_index = 1, alpha = 0.05)
 #' @return data.frame
 #' @export
 #'
-
 p_methods <- function(data, pv_index=1, alpha=0.05){
   require(dplyr)
 
