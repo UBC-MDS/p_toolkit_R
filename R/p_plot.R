@@ -1,20 +1,18 @@
-#' This function plots all the p-values in ascending order and compares them with two lines, one representing
-#' the BH cutoff point and another one the Bonferroni cutoff.
+#' P-value Summary Plot
+#' 
+#' @description
+#' This function plots all the p-values in ascending order and compares them with two lines, one representing the BH cutoff point and another one the Bonferroni cutoff.
+#' 
+#' @usage p_plot(data, pv_index, alpha = 0.05)
 #'
-#' Args:
-#'   - ad_object: the dataframe output from the p_methods function.
+#' @param data dataframe containing at least a column of p-values to be adjusted
+#' @param pv_index (numeric) if the input is a dataframe, col refers to the column name of the dataframe that has the p-values
+#' @param alpha (numeric) significance level for both methods
 #'
-#' Returns:
-#'   - plot: a ggplot with the p-values and both cut-off lines.
-
-#' Title
+#' @return ggplot dataframe output from the p_methods function
 #'
-#' @param data
-#'
-#' @return ggplot2
 #' @export
 #'
-
 p_plot <- function(data, pv_index,alpha = 0.05){
   require(dplyr)
   require(ggplot2)

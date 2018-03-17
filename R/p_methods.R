@@ -1,9 +1,24 @@
-
-
-
-#' A summary dataframe with columns for the p-values, adjusted p-values
-#' for both Bonferroni and Benjamini-Hochberg (BH), adjusted significance
-#' level for Bonferroni and the critical value for BH
+#' P-value Corrections
+#'
+#' @usage p_adjust(data, pv_index, method, alpha = 0.05)
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
 #'
 #' Args:
 #'     - data (dataframe): dataframe containing at least a column of p-values to be adjusted
