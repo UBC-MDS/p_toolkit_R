@@ -1,26 +1,38 @@
-#' P-value Adjustments
-#' This function executes an specific p-value adjustment method.
-#' #'
-#'Returns:
-#'   - data frame: data frame with the following columns:
-#' raw_p_value (numeric): original p-values.
-#'       adjusted_p_value (numeric): p-values after the adjustment.
-#'       signficant (logical): boolean values determining if each p-value is significant.
-#'       critical_value (numeric): it's the calculated critical value to compare with the cut-off.
+#' P-value Adjustments by Methods
 #'
+#' @usage p_adjust(data, pv_index, method, alpha = 0.05)
 #'
-#' Args:
-#' @param data (dataframe): dataframe containing at least a column of p-values to be adjusted
-#' @param pv_index (int): if the input is a dataframe, col refers to the column name of the dataframe that has the p-values.
-#' @param method (numeric): significance level for both methods.
-#' @param alpha (string): method used for the adjustment ("bh" or "bonf")
+#' @param data (dataframe) dataframe containing at least a column of p-values to be adjusted
+#' @param pv_index (numeric) if the input is a dataframe, col refers to the column name of the dataframe that has the p-values
+#' @param method (string) method used for the adjustment ("bh" or "bonf")
+#' @param alpha (numeric) significance level for both methods
 #'
-#' @return data.frame
-#' @export
-
+#' @value A two column dataframe with the input p-values and their corresponding corrected p-values depending on the method chosen.
+#'
+#' @description
+#' This function outputs a dataframe with the original p-values and their adjustments by the specified method.
+#'
+#' @details
+#' Requirements:  Dplyr
+#'
 #' @examples
-#'
-
+#' # Simulation by Research Utopia
+#' nSims <- 100 #number of simulated experiments
+#' p <-numeric(nSims) #set up empty container for all simulated p-values
+#' 
+#' for(i in 1:nSims){ #for each simulated experiment
+#'   x<-rnorm(n = 100, mean = 10, sd = 8) #produce 100 simulated participants
+#'   with mean=10 and SD=8
+#'   y<-rnorm(n = 100, mean = 30, sd = 5) #produce 100 simulated participants
+#'   with mean=30 and SD=5
+#'   z<-t.test(x,y) #perform the t-test
+#'   p[i]<-z$p.value #get the p-value and store it
+#' }
+#' # test function
+#' p_adjust(data = p, pv_index = 1, method = "bonf", alpha = 0.05)
+#' 
+#' @export
+#' 
 p_adjust <- function(data, pv_index, method= "bh", alpha=0.05){
   require(dplyr)
   if(is.data.frame(data)){
