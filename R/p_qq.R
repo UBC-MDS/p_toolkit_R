@@ -1,24 +1,20 @@
+#' Multiple Comparison QQ-plot 
+#'
+#'
+#' @usage p_qq(data, pv_index)
+#' 
+#' @param data (dataframe) dataframe containing at least a column of p-values to be adjusted
+#' @param pv_index (numeric) if the input is a dataframe, col refers to the column name of the dataframe that has the p-values
+#'
+#' @description 
 #' This function plots all the raw p-values and compares them with a theoretical uniform distribution using a
 #' qq plot. This plot is created with a negative log scale, letting
 #' us visualize all the p-values, independent of their small magnitudes. The p-values deviated from the diagonal line,
 #' are the ones that are significant.
 #'
-#' Args:
-#'   - ad_object: the dataframe output from the p_methods function.
-#'
-#' Returns:
-#'   - plot: a ggplot object with the qq plot.
-
-
-#' Title
-#'
-#' @param data (data.frame or vector)
-#' @param pv_index
-#'
-#' @return gplot2
+#' @returns ggplot a ggplot object with the qq plot.
 #' @export
 #'
-
 p_qq <- function(data, pv_index){
   require(dplyr)
   require(ggplot2)
