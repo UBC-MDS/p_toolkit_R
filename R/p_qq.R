@@ -12,6 +12,9 @@
 #' us visualize all the p-values, independent of their small magnitudes. The p-values deviated from the diagonal line,
 #' are the ones that are significant.
 #'
+#' @details
+#' Requirements:  ggplot2
+#' 
 #' @returns ggplot a ggplot object with the qq plot.
 #' @export
 #'
