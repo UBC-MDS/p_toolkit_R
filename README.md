@@ -1,3 +1,7 @@
+
+[![Travis](https://img.shields.io/travis/UBC-MDS/ptoolkit.svg?)](https://github.com/UBC-MDS/ptoolkit)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 <h5 align="center">
   <br>
 <img src="doc/pictures/p_toolkit_logo.png" alt="p_toolkit" width="200"></a>
