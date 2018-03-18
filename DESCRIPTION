@@ -5,7 +5,7 @@ Authors@R: c( person("Amy", "Goldlist", email = "amygoldlist@gmail.com", role = 
   person("Esteban", "Angel", email = "example@example.com", role = c("aut")),
   person("Vero", "Mulholland", email = "example@example.com", role = c("aut", "cre")))
 Description: p_toolkit is a package designed to help adjust and visualize p-values when using multiple comparisons.
-Depends: R (>= 3.4.3)
+Depends: R (>= 3.4.1)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
