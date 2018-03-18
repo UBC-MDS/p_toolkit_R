@@ -15,7 +15,7 @@
 #' @details
 #' Requirements:  ggplot2
 #' 
-#' @returns ggplot a ggplot object with the qq plot.
+#' @return ggplot a ggplot object with the qq plot.
 #' @export
 #'
 p_qq <- function(data, pv_index){

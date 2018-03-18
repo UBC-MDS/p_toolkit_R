@@ -11,6 +11,9 @@ p_qq(data, pv_index)
 
 \item{pv_index}{(numeric) if the input is a dataframe, col refers to the column name of the dataframe that has the p-values}
 }
+\value{
+ggplot a ggplot object with the qq plot.
+}
 \description{
 This function plots all the raw p-values and compares them with a theoretical uniform distribution using a
 qq plot. This plot is created with a negative log scale, letting
