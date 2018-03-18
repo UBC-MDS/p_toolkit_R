@@ -2,37 +2,29 @@
 % Please edit documentation in R/p_methods.R
 \name{p_methods}
 \alias{p_methods}
-\title{A summary dataframe with columns for the p-values, adjusted p-values
-for both Bonferroni and Benjamini-Hochberg (BH), adjusted significance
-level for Bonferroni and the critical value for BH}
+\title{P-value Corrections}
 \usage{
 p_methods(data, pv_index, alpha = 0.05)
 }
 \arguments{
-\item{data}{(data.frame or vector)}
+\item{data}{(dataframe) dataframe containing at least a column of p-values to be adjusted}
 
-\item{pv_index}{(index)}
+\item{pv_index}{(numeric) if the input is a dataframe, col refers to the column name of the dataframe that has the p-values}
 
-\item{alpha}{(numeric)}
+\item{alpha}{(numeric) significance level for both methods}
 }
 \value{
 data.frame
 }
 \description{
-Args:
-    - data (dataframe): dataframe containing at least a column of p-values to be adjusted
-    - pv_index (int): original p-value column index from existing input dataframe OR the name of the column in quotes
-    - alpha (numeric): significance level as a value between 0 and 1
+Dataframe: appends to input dataframe both adjusted p-values and significance
+                 levels (Bonferroni and BH) in ascending raw p-value order.
+     Includes following columns:
+     - bonf_value (numeric): Bonferroni adjusted significance level (same for all)
+     - bonf_significant (logical): True if significant p-value or False if not
+     - bh_value (numeric): Benjamini-Hochberg (BH) critical value
+     - BH_significant (logical): True if significant p-value or False if not
 }
 \details{
-Returns:
-    Dataframe: appends to input dataframe both adjusted p-values and significance
-                  levels (Bonferroni and BH) in ascending raw p-value order.
-      Includes following columns:
-      - bonf_value (numeric): Bonferroni adjusted significance level (same for all)
-      - bonf_significant (logical): True if significant p-value or False if not
-      - bh_value (numeric): Benjamini-Hochberg (BH) critical value
-      - BH_significant (logical): True if significant p-value or False if not
-
 Requirements:  Dplyr
 }

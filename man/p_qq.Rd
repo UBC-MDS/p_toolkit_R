@@ -2,27 +2,21 @@
 % Please edit documentation in R/p_qq.R
 \name{p_qq}
 \alias{p_qq}
-\title{This function plots all the raw p-values and compares them with a theoretical uniform distribution using a
-qq plot. This plot is created with a negative log scale, letting
-us visualize all the p-values, independent of their small magnitudes. The p-values deviated from the diagonal line,
-are the ones that are significant.}
+\title{Multiple Comparison QQ-plot}
 \usage{
 p_qq(data, pv_index)
 }
 \arguments{
-\item{data}{(data.frame or vector)}
+\item{data}{(dataframe) dataframe containing at least a column of p-values to be adjusted}
 
-\item{pv_index}{}
-}
-\value{
-gplot2
+\item{pv_index}{(numeric) if the input is a dataframe, col refers to the column name of the dataframe that has the p-values}
 }
 \description{
-Args:
-  - ad_object: the dataframe output from the p_methods function.
+This function plots all the raw p-values and compares them with a theoretical uniform distribution using a
+qq plot. This plot is created with a negative log scale, letting
+us visualize all the p-values, independent of their small magnitudes. The p-values deviated from the diagonal line,
+are the ones that are significant.
 }
 \details{
-Returns:
-  - plot: a ggplot object with the qq plot.
-Title
+Requirements:  ggplot2
 }
