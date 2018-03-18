@@ -7,7 +7,7 @@
 #' @param method (string) method used for the adjustment ("bh" or "bonf")
 #' @param alpha (numeric) significance level for both methods
 #'
-#' 
+#'
 #' @description
 #' This function outputs a dataframe with the original p-values and their adjustments by the specified method.
 #'
@@ -15,23 +15,11 @@
 #' Requirements:  Dplyr
 #'
 #' @examples
-#' # Simulation by Research Utopia
-#' nSims <- 100 #number of simulated experiments
-#' p <-numeric(nSims) #set up empty container for all simulated p-values
-#' 
-#' for(i in 1:nSims){ #for each simulated experiment
-#'   x<-rnorm(n = 100, mean = 10, sd = 8) #produce 100 simulated participants
-#'   with mean=10 and SD=8
-#'   y<-rnorm(n = 100, mean = 30, sd = 5) #produce 100 simulated participants
-#'   with mean=30 and SD=5
-#'   z<-t.test(x,y) #perform the t-test
-#'   p[i]<-z$p.value #get the p-value and store it
-#' }
 #' # test function
 #' p_adjust(data = p, pv_index = 1, method = "bonf", alpha = 0.05)
-#' 
+#'
 #' @export
-#' 
+#'
 p_adjust <- function(data, pv_index, method= "bh", alpha=0.05){
   require(dplyr)
   if(is.data.frame(data)){
