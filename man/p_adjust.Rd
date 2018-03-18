@@ -2,33 +2,22 @@
 % Please edit documentation in R/p_adjust.R
 \name{p_adjust}
 \alias{p_adjust}
-\title{P-value Adjustments
-This function executes an specific p-value adjustment method.
-#'
-Returns:
-  - data frame: data frame with the following columns:
-raw_p_value (numeric): original p-values.
-      adjusted_p_value (numeric): p-values after the adjustment.
-      signficant (logical): boolean values determining if each p-value is significant.
-      critical_value (numeric): it's the calculated critical value to compare with the cut-off.}
+\title{P-value Adjustments by Methods}
 \usage{
 p_adjust(data, pv_index, method, alpha = 0.05)
 }
 \arguments{
-\item{data}{(dataframe): dataframe containing at least a column of p-values to be adjusted}
+\item{data}{(dataframe) dataframe containing at least a column of p-values to be adjusted}
 
-\item{pv_index}{(int): if the input is a dataframe, col refers to the column name of the dataframe that has the p-values.}
+\item{pv_index}{(numeric) if the input is a dataframe, col refers to the column name of the dataframe that has the p-values}
 
-\item{method}{(numeric): significance level for both methods.}
+\item{method}{(string) method used for the adjustment ("bh" or "bonf")}
 
-\item{alpha}{(string): method used for the adjustment ("bh" or "bonf")}
-}
-\value{
-data.frame
+\item{alpha}{(numeric) significance level for both methods}
 }
 \description{
-Args:
+This function outputs a dataframe with the original p-values and their adjustments by the specified method.
 }
-\examples{
-
+\details{
+Requirements:  Dplyr
 }
