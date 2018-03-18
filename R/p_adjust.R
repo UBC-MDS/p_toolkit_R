@@ -7,14 +7,11 @@
 #' @param method (string) method used for the adjustment ("bh" or "bonf")
 #' @param alpha (numeric) significance level for both methods
 #'
-#' @value A two column dataframe with the input p-values and their corresponding corrected p-values depending on the method chosen.
-#'
 #' @description
 #' This function outputs a dataframe with the original p-values and their adjustments by the specified method.
 #'
 #' @details
 #' Requirements:  Dplyr
-#'
 #' 
 #' @export
 #' 
