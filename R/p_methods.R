@@ -22,7 +22,7 @@
 #'
 #' @examples
 #' # test function
-#' p_method(data = p, pv_index = 1, alpha = 0.05)
+#' p_method(data = [0.03,0.05,0.08,0.2], pv_index = 1, alpha = 0.05)
 #' @return data.frame
 #' @export
 #'

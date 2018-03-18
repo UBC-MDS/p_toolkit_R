@@ -16,7 +16,7 @@
 #'
 #' @examples
 #' # test function
-#' p_adjust(data = p, pv_index = 1, method = "bonf", alpha = 0.05)
+#' p_adjust(data = [0.03,0.05,0.08,0.2], pv_index = 1, method = "bonf", alpha = 0.05)
 #'
 #' @export
 #'
